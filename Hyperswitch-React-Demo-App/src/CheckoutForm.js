@@ -13,7 +13,6 @@ export default function CheckoutForm() {
   const elements = useElements();
   const navigate = useNavigate();
   const [isSuccess, setSucces] = useState(false);
-
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -55,7 +54,7 @@ export default function CheckoutForm() {
 
     setIsProcessing(true);
 
-    const { error, status } = await hyper.confirmPayment({
+    const { error, status, mandate_id } = await hyper.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
@@ -89,7 +88,7 @@ export default function CheckoutForm() {
     }
     hyper.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       console.log("-retrieve called", paymentIntent.status);
-      handlePaymentStatus(paymentIntent.status);
+      handlePaymentStatus(paymentIntent?.status);
     });
   }, [hyper, navigate]);
 
@@ -105,6 +104,21 @@ export default function CheckoutForm() {
       },
     },
   };
+
+  let viewport = (
+    <form id="payment-form" onSubmit={handleSubmit}>
+      <div class="paymentElement">
+        <PaymentElement id="payment-element" options={options} />
+      </div>
+      <button disabled={isProcessing || !hyper || !elements} id="submit">
+        <span id="button-text">
+          {isProcessing ? "Processing ... " : "Pay now"}
+        </span>
+      </button>
+      {/* Show any error or success messages */}
+      {message && <div id="payment-message">{message}</div>}
+    </form>
+  );
 
   return (
     <div class="browser">
@@ -125,23 +139,7 @@ export default function CheckoutForm() {
         {!isSuccess ? (
           <>
             <Cart />
-            <div className="payment-form">
-              <form id="payment-form" onSubmit={handleSubmit}>
-                <div class="paymentElement">
-                  <PaymentElement id="payment-element" options={options} />
-                </div>
-                <button
-                  disabled={isProcessing || !hyper || !elements}
-                  id="submit"
-                >
-                  <span id="button-text">
-                    {isProcessing ? "Processing ... " : "Pay now"}
-                  </span>
-                </button>
-                {/* Show any error or success messages */}
-                {message && <div id="payment-message">{message}</div>}
-              </form>
-            </div>
+            <div className="payment-form">{viewport}</div>
           </>
         ) : (
           <Completion />

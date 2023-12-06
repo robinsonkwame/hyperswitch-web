@@ -3,7 +3,7 @@ import "./index.css";
 import "./App.css";
 import success from "../public/assets/Successsuccess.svg";
 
-function Completion(props) {
+function Completion() {
   return (
     <>
       <div className="ConfirmContainer">

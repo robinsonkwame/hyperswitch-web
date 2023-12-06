@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
-
-
 body {
   font-family: "Raleway";
   display: flex;
@@ -9,38 +7,41 @@ body {
   font-size: 1.2em;
   color: var(--dark-terminal-color);
 }
-main{
+.hyperswitch_heading {
+  margin-right: 10em;
+}
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.heading{
-  color:#454141ab;
+.heading {
+  color: #454141ab;
   display: flex;
-  font-weight:bolder;
-  font-family:sans-serif ;
+  font-weight: bolder;
+  font-family: sans-serif;
   justify-content: center;
 }
-.mainConatiner{
+.mainConatiner {
   gap: 1em;
   padding: 1em;
 }
 
-.browser { 
-  border-radius: 5px ;
-  box-shadow: 0px 20px 25px 10px rgba(0, 0, 0, .4);
-  margin: auto
+.browser {
+  border-radius: 5px;
+  box-shadow: 0px 20px 25px 10px rgba(0, 0, 0, 0.4);
+  margin: 1em;
 }
 
 .toolbar {
-  background-color: #f3f3f3;;
+  background-color: #f3f3f3;
   width: auto;
   height: 23px;
   border-radius: 5px 5px 0 0;
 }
 
 .tab {
-  border-bottom: 15px solid #E6E6E6;
+  border-bottom: 15px solid #e6e6e6;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-radius: 5px 5px 0 0;
@@ -59,35 +60,35 @@ main{
 }
 
 .btn {
-width: 10px;
-height: 10px;
-border-radius: 5px;
-float: left;
-margin: 8px 5px 0 0;
-box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, .05);
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  float: left;
+  margin: 8px 5px 0 0;
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.05);
 }
 .btn:first-of-type {
-margin-left: 10px;
+  margin-left: 10px;
 }
 
 .close {
-  background-color: #E06752;
+  background-color: #e06752;
 }
-.titleContainer{
+.titleContainer {
   gap: 0.5em;
   display: flex;
   width: max-content;
   flex-direction: column;
   padding-bottom: 2em;
 }
-.logoImg{
-  width: 32px
+.logoImg {
+  width: 32px;
 }
-.title{
+.title {
   font-size: 25px;
   font-weight: 900;
 }
-.testMode{
+.testMode {
   display: flex;
   text-align: center;
   align-items: center;
@@ -95,38 +96,38 @@ margin-left: 10px;
   border-radius: 5px;
   width: 100px;
   font-weight: 600;
-  background-color: rgb(255,222,146);
-  color: rgb(187,85,4);
+  background-color: rgb(255, 222, 146);
+  color: rgb(187, 85, 4);
 }
 
-#payment-message{
+#payment-message {
   color: red;
 }
 
 .min {
-  background-color:  #ecc343;
+  background-color: #ecc343;
 }
 
 .max {
   background-color: #57d08d;
 }
-.ordersummary{
+.ordersummary {
   font-weight: bolder;
 }
-.info{
+.info {
   border-radius: 50%;
   border: 1px solid #6b7a94;
-  width:10px;
+  width: 10px;
   display: flex;
-  height:10px;
+  height: 10px;
   justify-content: center;
   align-items: center;
 }
-.input{
-  width:40%;
+.input {
+  width: 40%;
   display: flex;
   align-items: center;
-  gap:0.5em;
+  gap: 0.5em;
   height: 60%;
   border-radius: 10px;
   font-family: sans-serif;
@@ -149,19 +150,19 @@ margin-left: 10px;
 }
 .viewport {
   background-color: white;
-  width: auto;  
+  width: auto;
   display: flex;
   flex-direction: row;
   gap: 1em;
   height: 700px;
-  border-top: 1px solid #CBCBCB;
+  border-top: 1px solid #cbcbcb;
   justify-content: center;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.ConfirmContainer{
+.ConfirmContainer {
   padding: 5%;
-  margin-bottom:5%;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -169,17 +170,17 @@ margin-left: 10px;
   justify-content: center;
   align-items: center;
 }
-.returnLink{
+.returnLink {
   font-weight: 400;
   font-size: 16px;
-  color: #4285F4;
+  color: #4285f4;
 }
-.ConfirmText{
+.ConfirmText {
   font-weight: 700;
   font-size: 26px;
   color: #000000;
 }
-.ConfirmDes{
+.ConfirmDes {
   text-align: center;
   width: 100%;
   font-weight: 400;
@@ -187,7 +188,7 @@ margin-left: 10px;
   color: #000000;
   opacity: 0.4;
 }
-.payment-form{
+.payment-form {
   padding: 2em;
   width: 50%;
   display: flex;
@@ -195,8 +196,46 @@ margin-left: 10px;
   justify-content: center;
   box-shadow: -5px 0px 10px 1px #f0efef;
 }
+#non_cta {
+  cursor: pointer;
+  align-items: center;
+  width: 450px;
+  height: 50px;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 2px solid #4285f4;
+  color: #4285f4;
+  display: flex;
+  justify-content: space-between;
+}
 
-.img{
+#button-text:hover {
+  transform: scale(1.05);
+  transition: transform 200ms;
+}
+
+#non_cta:hover {
+  width: 450px;
+  background-color: #4285f4;
+  border-radius: 4px;
+  border: 2px solid #4285f4;
+  color: #fff;
+  transform: scale(1.05);
+  transition: transform 200ms;
+}
+
+.flowbuttons {
+  padding: 2em;
+  margin-top: 3em;
+  border-radius: 10px;
+  box-shadow: 0px 20px 25px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+
+.img {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -220,16 +259,16 @@ margin-left: 10px;
   height: auto;
   padding: 10px;
 }
-.ItemContainer{
+.ItemContainer {
   display: flex;
   flex-direction: row;
   width: 35%;
 }
 
-.itemDetails{
+.itemDetails {
   padding: 8px;
 }
-.itemImg{
+.itemImg {
   width: auto;
 }
 .name {
@@ -240,21 +279,21 @@ margin-left: 10px;
   padding-bottom: 10px;
   color: #212529;
 }
-.total{
+.total {
   font-weight: 400;
   font-size: 16px;
   color: #000000;
   opacity: 0.9;
 }
-.value{
+.value {
   color: #212121;
 }
-.props{
+.props {
   text-align: initial;
   display: flex;
   flex-direction: row;
   padding-bottom: 10px;
-  color: #868E96;
+  color: #868e96;
   font-size: 15px;
 }
 .items {
@@ -263,38 +302,66 @@ margin-left: 10px;
   flex-direction: column;
 }
 
-@media only screen and (max-width: 1200px){
-  .viewport{
+.backArrow {
+  color: #006df9;
+  display: flex;
+  align-items: center;
+  margin-right: 15em;
+  justify-content: center;
+}
+.backArrow:hover {
+  transform: scale(1.1);
+  transition: transform ease-in 200ms;
+}
+
+@media only screen and (max-width: 1200px) {
+  .viewport {
     flex-direction: column;
     overflow-y: scroll;
     justify-content: flex-start;
   }
-  .payment-form{
+  .payment-form {
     width: auto;
     box-shadow: none;
     overflow-y: visible;
   }
-
-  .ConfirmContainer{
+  .backArrow {
+    display: none;
+  }
+  .heading {
+    justify-content: center;
+  }
+  .hyperswitch_heading {
+    margin-right: 0;
+  }
+  .flowbuttons {
+    margin-top: 0;
+    width: 70%;
+    overflow-y: visible;
+  }
+  #non_cta {
+    width: auto;
+  }
+  .cta .ConfirmContainer {
     width: 90%;
   }
 }
 
-@media only screen and (max-width: 650px){
-  .browser{
+@media only screen and (max-width: 650px) {
+  .browser {
     width: 370px;
     display: inline;
   }
-  .cart{
+  .cart {
     padding: 2em;
     padding-left: auto;
     padding-right: auto;
     width: auto;
   }
-  .title{
+  .title {
     font-size: 20px;
   }
-  .mainConatiner{
+  .mainConatiner {
     display: flex;
     flex-direction: column;
     justify-content: center;
