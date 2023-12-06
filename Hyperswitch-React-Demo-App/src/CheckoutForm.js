@@ -2,16 +2,14 @@ import { PaymentElement } from "@juspay-tech/react-hyper-js";
 import Cart from "./Cart";
 import { useState, useEffect } from "react";
 import { useHyper, useElements } from "@juspay-tech/react-hyper-js";
-import { useNavigate } from "react-router-dom";
-import "./App.css";
 import "./index";
 import React from "react";
 import Completion from "./Completion";
+import { TabBar } from "./TabBar";
 
 export default function CheckoutForm() {
   const hyper = useHyper();
   const elements = useElements();
-  const navigate = useNavigate();
   const [isSuccess, setSucces] = useState(false);
 
   const [message, setMessage] = useState(null);
@@ -91,7 +89,7 @@ export default function CheckoutForm() {
       console.log("-retrieve called", paymentIntent.status);
       handlePaymentStatus(paymentIntent.status);
     });
-  }, [hyper, navigate]);
+  }, [hyper]);
 
   const options = {
     wallets: {
@@ -107,27 +105,15 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div class="browser">
-      <div class="toolbar">
-        <div class="controls">
-          <div class="btn close"></div>
-          <div class="btn min"></div>
-          <div class="btn max"></div>
-        </div>
-      </div>
-      <div class="tabbar">
-        <div class="input">
-          <div class="info"> &#8505;</div>
-          <div> http://localhost:9060</div>
-        </div>
-      </div>
-      <div class="viewport">
+    <div className="browser">
+      <TabBar />
+      <div className="viewport">
         {!isSuccess ? (
           <>
             <Cart />
             <div className="payment-form">
               <form id="payment-form" onSubmit={handleSubmit}>
-                <div class="paymentElement">
+                <div className="paymentElement">
                   <PaymentElement id="payment-element" options={options} />
                 </div>
                 <button

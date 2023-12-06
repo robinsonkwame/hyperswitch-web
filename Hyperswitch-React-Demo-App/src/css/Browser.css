@@ -1,0 +1,193 @@
+.FakeChrome {
+  background: #ffffff;
+  box-shadow: 0px 20px 44px rgba(50, 50, 93, 0.12),
+    0px -1px 32px rgba(50, 50, 93, 0.06), 0px 3px 12px rgba(0, 0, 0, 0.08);
+  height: 496px;
+  border-radius: 8px;
+  min-width: 300px;
+  transition: width 300ms, height 300ms;
+}
+
+.FakeChrome--desktop {
+  width: calc(100% - 32px);
+  /* Makes the iframe section calculate out to 760px tall */
+  height: 789px;
+}
+
+.FakeChrome.FakeChrome-AnimateStep3--exited {
+  width: 720px;
+  height: 505px;
+}
+
+.FakeChrome.FakeChrome-AnimateStep2--exited {
+  width: calc(100% - 32px) !important;
+  height: 789px !important;
+}
+
+.FakeChrome-AnimateStep3--entered {
+  transition: none;
+}
+
+@media (min-width: 768px) {
+  .FakeChrome--desktop {
+    min-width: 640px;
+  }
+}
+
+.FakeChrome--mobile {
+  width: 336px;
+  border-radius: 48px;
+  box-shadow: 0px 20px 44px rgba(50, 50, 93, 0.12),
+    0px -1px 32px rgba(50, 50, 93, 0.06), 0px 3px 12px rgba(0, 0, 0, 0.08),
+    inset 0px -2px 5px rgba(10, 37, 64, 0.35);
+  padding: 8px;
+  margin: 0 auto;
+  height: 760px;
+}
+
+.FakeChrome-Wrapper {
+  height: 100%;
+  overflow-y: hidden;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.FakeChrome-MobileWrapper {
+  background: #ffffff;
+  box-shadow: 0px 0px 2px rgba(10, 37, 64, 0.1);
+  border-radius: 44px;
+  overflow: hidden;
+}
+
+.FakeChrome-TopBar--mobile {
+  background: rgb(247, 250, 252, 0.9);
+  box-shadow: 0px 0.25px 0px #e3e8ee;
+}
+
+.FakeChrome-TopBar {
+  background: #fcfeff;
+  box-shadow: 0px 0.5px 0px #ecf2f7;
+  padding: 6px 12px;
+  border-radius: 8px 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.FakeChrome-TopBarButtons {
+  display: flex;
+  margin-right: 32px;
+}
+
+.FakeChrome-TopBarButtons > .FakeChrome-TopBarButton:not(:last-child) {
+  margin-right: 6px;
+}
+
+.FakeChrome-TopBarButton {
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background: #ecf2f7;
+}
+
+.FakeChrome-URLBar {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  background: rgba(236, 242, 247, 0.4);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 12px;
+  color: #0a2540;
+  width: 615px;
+  height: 20px;
+}
+
+.FakeChrome-URLBar--small {
+  width: 410px;
+}
+
+.FakeChrome-URLBar--mobile {
+  background: none;
+}
+
+.FakeChrome-URLBarIcon {
+  margin-right: 4px;
+}
+
+.FakeChrome-CheckoutPreview {
+  position: relative;
+  height: 100%;
+  margin-top: 1px;
+  margin-bottom: -4px;
+  overflow: hidden;
+}
+
+.FakeChrome--mobile .FakeChrome-CheckoutPreview {
+  border-bottom-right-radius: 44px;
+  border-bottom-left-radius: 44px;
+}
+
+.FakeChrome--desktop .FakeChrome-CheckoutPreview {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.FakeChrome-URLBarList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+  width: 100%;
+}
+
+.FakeChrome-URLInputListItem {
+  /* Used to properly center url */
+  grid-column-start: 2;
+  display: flex;
+  align-items: center;
+}
+.FakeChrome-URLInput {
+  min-width: 5px;
+}
+.FakeChrome-TopBarUrlChange {
+  margin-left: auto;
+}
+
+.FakeChrome-TopBarUrlChangeButton {
+  display: flex;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 4px;
+  height: 20px;
+  /* Gray/25 */
+  background: rgba(26, 26, 26, 0.05);
+  border-radius: 12px;
+  user-select: none;
+}
+
+.FakeChrome--mobile .FakeChrome-TopBarUrlChange {
+  padding-right: 20px;
+}
+
+.FakeChrome-TopBarUrlChangeButton:hover {
+  background: var(--button-background-color);
+  color: var(--blue);
+}
+
+.FakeChrome--auto {
+  height: auto;
+}
+
+.FakeChrome--smallHeight {
+  height: 525px;
+}
+
+.FakeChrome--URLTooltip {
+  margin-left: 0;
+}

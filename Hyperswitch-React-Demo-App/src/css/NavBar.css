@@ -1,0 +1,438 @@
+.Navbar {
+  background: #ffffff;
+  padding-top: 24px;
+  min-height: calc(100vh - 24px);
+}
+
+.Navbar-Spacer {
+  border-right: 1px solid #e3e8ee;
+  display: flex;
+  margin-left: 2px;
+  margin-right: 12px;
+  height: 20px;
+}
+
+.Navbar-Links {
+  display: flex;
+  align-items: center;
+}
+
+.Navbar--onStepThree {
+  min-height: 180px;
+  margin-bottom: 40px;
+}
+
+.Navbar .ExternalLink-Text {
+  font-weight: 500;
+}
+
+.Navbar header {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0px 32px;
+}
+
+.Navbar-Title h1 {
+  margin: 14px 0;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.Navbar-Subheading {
+  position: relative;
+  margin: 0;
+  font-weight: 500;
+  flex-basis: 100%;
+}
+
+.Navbar-Content {
+  position: relative;
+  max-width: 1280px;
+  min-height: 136px;
+  padding: 0 32px;
+  padding-bottom: 24px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.Navbar--forStepTwo .Navbar-Content {
+  padding-bottom: 0;
+}
+
+.Navbar-ColumnLeft,
+.Navbar-ColumnRight {
+  display: flex;
+}
+
+.Navbar-ColumnLeft {
+  margin-right: 32px;
+  padding-bottom: 32px;
+  position: relative;
+}
+
+.Navbar-ColumnRight {
+  align-items: flex-end;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.Navbar .NextStep {
+  position: relative;
+  margin-top: 34px;
+  margin-bottom: 0;
+  display: flex;
+  width: 48px;
+  height: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.Navbar-StepOne,
+.Navbar-StepTwo,
+.Navbar-StepThree {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.Navbar-StepOne {
+  flex-direction: column;
+}
+
+.Navbar-StepTwo {
+  flex-direction: column;
+}
+
+.Navbar-StepTwo > .Toggle {
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.Navbar-StepThree {
+  margin-top: -10px;
+}
+
+.Navbar-StepThreeActions {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+}
+
+.Navbar-StepThreeActions > div:not(:last-child) {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 500px) {
+  .Navbar-StepOne {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 600px) {
+  .Navbar-StepThreeActions {
+    width: auto;
+  }
+
+  .Navbar-StepThreeActions > div:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .Navbar {
+    min-height: 180px;
+    margin-bottom: 40px;
+  }
+
+  /* Rare case of the app thinking its mobile browser but we're not in mobile view */
+  .Navbar-StepTwo .LocationDropdown {
+    display: none;
+  }
+
+  .Navbar-StepOne {
+    margin: 40px 0 0;
+    width: 620px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .Navbar-ColumnLeft {
+    position: absolute;
+  }
+
+  .Navbar-ColumnRight {
+    margin-top: 60px;
+    flex-direction: row;
+  }
+
+  .Navbar-StepTwo {
+    margin-top: 40px;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 500px;
+  }
+
+  .Navbar-StepTwo .Toggle {
+    width: 250px;
+    margin-bottom: 10px;
+  }
+
+  .Navbar-StepTwo .Toggle--slider {
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--brandColor {
+    order: 1;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--coupons {
+    order: 2;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--billingType {
+    order: 3;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--taxes {
+    order: 4;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--billingPeriod {
+    order: 5;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--policies {
+    order: 6;
+  }
+  .Navbar-StepTwo--subscription .Toggle--fontStyle {
+    order: 7;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--slider.Toggle--freeTrial {
+    order: 8;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--borderStyle {
+    order: 9;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--phoneNumber {
+    order: 10;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--upsells {
+    order: 11;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--crossSells {
+    order: 11;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--placeholder {
+    display: none;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--brandColor {
+    order: 1;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--coupons {
+    order: 2;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--fontStyle {
+    order: 3;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--address {
+    order: 4;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--borderStyle {
+    order: 5;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--policies {
+    order: 6;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--crossSells {
+    order: 7;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--phoneNumber {
+    order: 8;
+  }
+  .Navbar-StepTwo--payment .Toggle--taxes {
+    order: 9;
+    width: 250px;
+  }
+  .Navbar .NextStep {
+    position: absolute;
+    right: 32px;
+    bottom: 29px;
+    display: flex;
+    width: 48px;
+    height: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  .Navbar-StepThree {
+    margin-top: 38px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .Navbar-StepTwo {
+    margin: 0 auto;
+    max-width: 700px;
+  }
+
+  .Navbar-StepTwo .Toggle--slider {
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--brandColor {
+    order: 1;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--coupons {
+    order: 2;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--address {
+    order: 3;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--borderStyle {
+    order: 4;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--policies {
+    order: 5;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--taxes {
+    order: 6;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--fontStyle {
+    order: 7;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--crossSells {
+    order: 8;
+  }
+  .Navbar-StepTwo--payment .Toggle--phoneNumber {
+    order: 9;
+  }
+
+  .Navbar-StepTwo--payment .Toggle--placeholder {
+    display: block;
+    order: 10;
+    width: 150px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--brandColor {
+    order: 1;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--slider.Toggle--freeTrial {
+    order: 12;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--borderStyle {
+    order: 2;
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--taxes {
+    order: 3;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--billingType {
+    order: 4;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--phoneNumber {
+    order: 5;
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--coupons {
+    order: 6;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--billingPeriod {
+    order: 7;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--policies {
+    order: 9;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--crossSells {
+    order: 8;
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--fontStyle {
+    order: 10;
+    width: 250px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--upsells {
+    order: 11;
+    width: 200px;
+  }
+
+  .Navbar-StepTwo--subscription .Toggle--placeholder {
+    display: block;
+    order: 12;
+    width: 200px;
+  }
+}
+
+@media (min-width: 1150px) {
+  .Navbar-StepOne {
+    min-width: 800px;
+    width: initial;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+}

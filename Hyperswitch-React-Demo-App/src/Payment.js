@@ -2,16 +2,26 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { HyperElements } from "@juspay-tech/react-hyper-js";
 import CheckoutForm from "./CheckoutForm";
+import { Header } from "./Header";
+import { NavBarContent } from "./NavBarContent";
+import "./css/NavBar.css";
 
 function Payment() {
   const [hyperPromise, setHyperPromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+  const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"]
+  const [paymentView, setPaymentView] = useState(0)
+
+  console.log(paymentView)
 
   useEffect(() => {
     Promise.all([
       fetch(`${endPoint}/config`),
       fetch(`${endPoint}/urls`),
-      fetch(`${endPoint}/create-payment-intent`),
+      fetch(`${endPoint}/create-payment-intent`, {
+        method: "POST",
+        body: paymentFlow[paymentView]
+      }),
     ])
       .then((responses) => {
         return Promise.all(responses.map((response) => response.json()));
@@ -48,15 +58,18 @@ function Payment() {
 
   return (
     <div className="mainConatiner">
-      <div className="heading">
-        <h2>Hyperswitch Unified Checkout</h2>
+      <div className="Navbar">
+        <Header />
+        <NavBarContent paymentView={paymentView} setPaymentView={setPaymentView} />
       </div>
-      {clientSecret && hyperPromise && (
-        <HyperElements hyper={hyperPromise} options={{ clientSecret }}>
-          <CheckoutForm />
-        </HyperElements>
-      )}
-    </div>
+      <main>
+        {clientSecret && hyperPromise && (
+          paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
+            <CheckoutForm />
+          </HyperElements>)
+        )}
+      </main>
+    </div >
   );
 }
 

@@ -41,7 +41,7 @@ app.get("/urls", (req, res) => {
   });
 });
 
-app.get("/create-payment-intent", async (req, res) => {
+app.post("/create-payment-intent", async (req, res) => {
   try {
     var paymentIntent;
     const request = {
@@ -79,16 +79,6 @@ app.get("/create-payment-intent", async (req, res) => {
           country_code: "+1",
         },
       },
-      connector_metadata: {
-        noon: {
-          order_category: "applepay",
-        },
-      },
-      metadata: {
-        udf1: "value1",
-        new_customer: "true",
-        login_date: "2019-09-10T10:11:12Z",
-      },
       billing: {
         address: {
           line1: "1467",
@@ -105,6 +95,16 @@ app.get("/create-payment-intent", async (req, res) => {
           number: "8056594427",
           country_code: "+91",
         },
+      },
+      connector_metadata: {
+        noon: {
+          order_category: "applepay",
+        },
+      },
+      metadata: {
+        udf1: "value1",
+        new_customer: "true",
+        login_date: "2019-09-10T10:11:12Z",
       },
     };
     if (SERVER_URL) {

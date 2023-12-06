@@ -5,14 +5,13 @@ import cap from "../public/assets/cap.png";
 function Cart() {
   return (
     <>
-      <div class="cart">
+      <div className="cart">
         <div className="titleContainer">
-          <div class="title">
-            {" "}
-            <img className="logoImg" width="28px" src={logo} /> Hyperswicth
+          <div className="title">
+            <img className="logoImg" width="28px" src={logo} /> Hyperswitch
             Playground App
           </div>
-          <div class="testMode">Test Mode</div>
+          <div className="testMode">Test Mode</div>
         </div>
         <div className="ordersummary">Order Summary(2) </div>
         <div className="items">
