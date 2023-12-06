@@ -89,6 +89,9 @@ main {
 .logoImg {
   width: 32px;
 }
+.logoImg2 {
+  width: 60px;
+}
 .title {
   font-size: 25px;
   font-weight: 900;
@@ -159,11 +162,12 @@ main {
   display: flex;
   flex-direction: row;
   gap: 1em;
-  height: 700px;
+  height: 100%;
   border-top: 1px solid #cbcbcb22;
   justify-content: center;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  /* min-height: 100vh; */
 }
 .ConfirmContainer {
   padding: 5%;
@@ -194,12 +198,12 @@ main {
   opacity: 0.4;
 }
 .payment-form {
-  padding: 2em;
-  width: 50%;
+  /* padding: 5em; */
+  width: 100%;
   display: flex;
   overflow-y: scroll;
   justify-content: center;
-  box-shadow: -5px 0px 10px 1px #f0efef;
+  /* box-shadow: -5px 0px 10px 1px #f0efef; */
 }
 
 .img {
@@ -276,7 +280,7 @@ main {
     justify-content: flex-start;
   }
   .payment-form {
-    width: auto;
+    /* width: auto; */
     box-shadow: none;
     overflow-y: visible;
   }
@@ -300,10 +304,10 @@ main {
   .title {
     font-size: 20px;
   }
-  .mainConatiner {
+  /* .mainConatiner {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+  } */
 }

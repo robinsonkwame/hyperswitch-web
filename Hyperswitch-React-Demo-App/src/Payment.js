@@ -63,11 +63,13 @@ function Payment() {
         <NavBarContent paymentView={paymentView} setPaymentView={setPaymentView} />
       </div>
       <main>
-        {clientSecret && hyperPromise && (
-          paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
-            <CheckoutForm />
-          </HyperElements>)
-        )}
+        <div className="container">
+          {clientSecret && hyperPromise && (
+            paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
+              <CheckoutForm />
+            </HyperElements>)
+          )}
+        </div>
       </main>
     </div >
   );

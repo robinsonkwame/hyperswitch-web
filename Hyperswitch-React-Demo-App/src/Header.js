@@ -1,9 +1,10 @@
 import React from "react";
+import logo from "../public/assets/hyperswitchLogo.svg";
 
 export const Header = () => {
     return <header>
         <a href="https://hyperswitch.io">
-            <img class="logoImg" width="28px" src="http://localhost:9060//public/assets/hyperswitchLogo.svg" />
+            <img className="logoImg2" src={logo} />
         </a>
         <div className="Navbar-Links">
             <a href="https://app.hyperswitch.io" className="ExternalLink"><

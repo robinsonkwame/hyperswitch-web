@@ -105,33 +105,37 @@ export default function CheckoutForm() {
   };
 
   return (
-    <div className="browser">
-      <TabBar />
-      <div className="viewport">
-        {!isSuccess ? (
-          <>
-            <Cart />
-            <div className="payment-form">
-              <form id="payment-form" onSubmit={handleSubmit}>
-                <div className="paymentElement">
-                  <PaymentElement id="payment-element" options={options} />
+    <div className="Browser Browser-AnimateStep3--entered Browser--desktop">
+      <div className="Browser-Wrapper">
+        <TabBar />
+        <div className="viewport">
+          {!isSuccess ? (
+            <>
+              <Cart />
+              <div className="App-Payment is-noBackground">
+                <div className="payment-form">
+                  <form id="payment-form" onSubmit={handleSubmit}>
+                    <div className="paymentElement">
+                      <PaymentElement id="payment-element" options={options} />
+                    </div>
+                    <button
+                      disabled={isProcessing || !hyper || !elements}
+                      id="submit"
+                    >
+                      <span id="button-text">
+                        {isProcessing ? "Processing ... " : "Pay now"}
+                      </span>
+                    </button>
+                    {/* Show any error or success messages */}
+                    {message && <div id="payment-message">{message}</div>}
+                  </form>
                 </div>
-                <button
-                  disabled={isProcessing || !hyper || !elements}
-                  id="submit"
-                >
-                  <span id="button-text">
-                    {isProcessing ? "Processing ... " : "Pay now"}
-                  </span>
-                </button>
-                {/* Show any error or success messages */}
-                {message && <div id="payment-message">{message}</div>}
-              </form>
-            </div>
-          </>
-        ) : (
-          <Completion />
-        )}
+              </div>
+            </>
+          ) : (
+            <Completion />
+          )}
+        </div>
       </div>
     </div>
   );

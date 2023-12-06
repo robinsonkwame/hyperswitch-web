@@ -3,22 +3,22 @@ import "./css/Browser.css";
 
 export const TabBar = () => {
     return (
-        <div className="FakeChrome-TopBar">
-            <div className="FakeChrome-TopBarButtons">
-                <div className="FakeChrome-TopBarButton"></div>
-                <div className="FakeChrome-TopBarButton"></div>
-                <div className="FakeChrome-TopBarButton"></div>
+        <div className="Browser-TopBar">
+            <div className="Browser-TopBarButtons">
+                <div className="Browser-TopBarButton"></div>
+                <div className="Browser-TopBarButton"></div>
+                <div className="Browser-TopBarButton"></div>
             </div>
-            <div className="FakeChrome-URLBar">
-                <ul className="FakeChrome-URLBarList">
-                    <li className="FakeChrome-URLInputListItem">
+            <div className="Browser-URLBar">
+                <ul className="Browser-URLBarList">
+                    <li className="Browser-URLInputListItem">
                         <svg
                             width="8"
                             height="8"
                             viewBox="0 0 8 8"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className="InlineSVG FakeChrome-URLBarIcon"
+                            className="InlineSVG Browser-URLBarIcon"
                             focusable="false"
                         >
                             <path
@@ -28,19 +28,19 @@ export const TabBar = () => {
                                 fill="#6B7A94"
                             ></path>
                         </svg>
-                        <div className="Tooltip-Context FakeChrome--URLTooltip">
-                            checkout.stripe.com
+                        <div className="Tooltip-Context Browser--URLTooltip">
+                            live.hyperswitch.io
                         </div>
                     </li>
-                    <li className="FakeChrome-TopBarUrlChange">
-                        <div role="button" className="FakeChrome-TopBarUrlChangeButton">
+                    <li className="Browser-TopBarUrlChange">
+                        <div role="button" className="Browser-TopBarUrlChangeButton">
                             <svg
                                 width="6"
                                 height="6"
                                 viewBox="0 0 6 6"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="InlineSVG FakeChrome-TopBarUrlChangeButtonIcon"
+                                className="InlineSVG Browser-TopBarUrlChangeButtonIcon"
                                 focusable="false"
                             >
                                 <path

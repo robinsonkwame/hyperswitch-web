@@ -1,4 +1,4 @@
-.FakeChrome {
+.Browser {
   background: #ffffff;
   box-shadow: 0px 20px 44px rgba(50, 50, 93, 0.12),
     0px -1px 32px rgba(50, 50, 93, 0.06), 0px 3px 12px rgba(0, 0, 0, 0.08);
@@ -8,33 +8,33 @@
   transition: width 300ms, height 300ms;
 }
 
-.FakeChrome--desktop {
+.Browser--desktop {
   width: calc(100% - 32px);
   /* Makes the iframe section calculate out to 760px tall */
   height: 789px;
 }
 
-.FakeChrome.FakeChrome-AnimateStep3--exited {
+.Browser.Browser-AnimateStep3--exited {
   width: 720px;
   height: 505px;
 }
 
-.FakeChrome.FakeChrome-AnimateStep2--exited {
+.Browser.Browser-AnimateStep2--exited {
   width: calc(100% - 32px) !important;
   height: 789px !important;
 }
 
-.FakeChrome-AnimateStep3--entered {
+.Browser-AnimateStep3--entered {
   transition: none;
 }
 
 @media (min-width: 768px) {
-  .FakeChrome--desktop {
+  .Browser--desktop {
     min-width: 640px;
   }
 }
 
-.FakeChrome--mobile {
+.Browser--mobile {
   width: 336px;
   border-radius: 48px;
   box-shadow: 0px 20px 44px rgba(50, 50, 93, 0.12),
@@ -45,27 +45,27 @@
   height: 760px;
 }
 
-.FakeChrome-Wrapper {
+.Browser-Wrapper {
   height: 100%;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   border-radius: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.FakeChrome-MobileWrapper {
+.Browser-MobileWrapper {
   background: #ffffff;
   box-shadow: 0px 0px 2px rgba(10, 37, 64, 0.1);
   border-radius: 44px;
   overflow: hidden;
 }
 
-.FakeChrome-TopBar--mobile {
+.Browser-TopBar--mobile {
   background: rgb(247, 250, 252, 0.9);
   box-shadow: 0px 0.25px 0px #e3e8ee;
 }
 
-.FakeChrome-TopBar {
+.Browser-TopBar {
   background: #fcfeff;
   box-shadow: 0px 0.5px 0px #ecf2f7;
   padding: 6px 12px;
@@ -74,23 +74,23 @@
   align-items: center;
 }
 
-.FakeChrome-TopBarButtons {
+.Browser-TopBarButtons {
   display: flex;
   margin-right: 32px;
 }
 
-.FakeChrome-TopBarButtons > .FakeChrome-TopBarButton:not(:last-child) {
+.Browser-TopBarButtons > .Browser-TopBarButton:not(:last-child) {
   margin-right: 6px;
 }
 
-.FakeChrome-TopBarButton {
+.Browser-TopBarButton {
   width: 8px;
   height: 8px;
   border-radius: 100%;
   background: #ecf2f7;
 }
 
-.FakeChrome-URLBar {
+.Browser-URLBar {
   display: flex;
   margin: 0 auto;
   align-items: center;
@@ -105,19 +105,19 @@
   height: 20px;
 }
 
-.FakeChrome-URLBar--small {
+.Browser-URLBar--small {
   width: 410px;
 }
 
-.FakeChrome-URLBar--mobile {
+.Browser-URLBar--mobile {
   background: none;
 }
 
-.FakeChrome-URLBarIcon {
+.Browser-URLBarIcon {
   margin-right: 4px;
 }
 
-.FakeChrome-CheckoutPreview {
+.Browser-CheckoutPreview {
   position: relative;
   height: 100%;
   margin-top: 1px;
@@ -125,17 +125,17 @@
   overflow: hidden;
 }
 
-.FakeChrome--mobile .FakeChrome-CheckoutPreview {
+.Browser--mobile .Browser-CheckoutPreview {
   border-bottom-right-radius: 44px;
   border-bottom-left-radius: 44px;
 }
 
-.FakeChrome--desktop .FakeChrome-CheckoutPreview {
+.Browser--desktop .Browser-CheckoutPreview {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-.FakeChrome-URLBarList {
+.Browser-URLBarList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
@@ -146,20 +146,20 @@
   width: 100%;
 }
 
-.FakeChrome-URLInputListItem {
+.Browser-URLInputListItem {
   /* Used to properly center url */
   grid-column-start: 2;
   display: flex;
   align-items: center;
 }
-.FakeChrome-URLInput {
+.Browser-URLInput {
   min-width: 5px;
 }
-.FakeChrome-TopBarUrlChange {
+.Browser-TopBarUrlChange {
   margin-left: auto;
 }
 
-.FakeChrome-TopBarUrlChangeButton {
+.Browser-TopBarUrlChangeButton {
   display: flex;
   align-items: center;
   padding: 0px 12px;
@@ -171,23 +171,23 @@
   user-select: none;
 }
 
-.FakeChrome--mobile .FakeChrome-TopBarUrlChange {
+.Browser--mobile .Browser-TopBarUrlChange {
   padding-right: 20px;
 }
 
-.FakeChrome-TopBarUrlChangeButton:hover {
+.Browser-TopBarUrlChangeButton:hover {
   background: var(--button-background-color);
   color: var(--blue);
 }
 
-.FakeChrome--auto {
+.Browser--auto {
   height: auto;
 }
 
-.FakeChrome--smallHeight {
+.Browser--smallHeight {
   height: 525px;
 }
 
-.FakeChrome--URLTooltip {
+.Browser--URLTooltip {
   margin-left: 0;
 }
