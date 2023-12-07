@@ -172,7 +172,7 @@
   }
 
   .Navbar-ColumnRight {
-    margin-top: 60px;
+    margin-top: 90px;
     flex-direction: row;
   }
 
@@ -429,7 +429,7 @@
 
 @media (min-width: 1150px) {
   .Navbar-StepOne {
-    min-width: 700px;
+    min-width: 1000px;
     width: initial;
     margin: 0 auto;
     justify-content: center;

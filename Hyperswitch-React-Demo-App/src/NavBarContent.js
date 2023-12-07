@@ -86,9 +86,8 @@ export const NavBarContent = ({ paymentView, setPaymentView }) => {
                         </svg>
                     </div>
                     <div className="BusinessModelButton-TextWrapper">
-                        <h3>Recurring payments</h3>
-                        <p>Zero Auth Flow
-                            <br /><span style={{ color: "white" }}>.</span>
+                        <h3>Add payment method, Charge later</h3>
+                        <p>Pay as you go Services
                         </p>
                     </div>
                 </button>

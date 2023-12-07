@@ -171,3 +171,20 @@ iframe {
   height: 100%;
   border: none;
 }
+
+.Radio {
+  border: 1px solid currentColor;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  display: block;
+  content: " ";
+  cursor: pointer;
+  visibility: visible;
+  margin-top: -2px;
+  background: radial-gradient(currentColor 46%, transparent 32%);
+  font-family: BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 24px;
+}

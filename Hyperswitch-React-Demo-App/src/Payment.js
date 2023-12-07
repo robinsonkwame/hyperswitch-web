@@ -12,6 +12,10 @@ function Payment() {
     "flow"
   );
 
+  const customer_id = new URLSearchParams(window.location.search).get(
+    "customer_id"
+  );
+
   console.log(paymentFlow)
 
   useEffect(() => {
@@ -25,7 +29,7 @@ function Payment() {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ paymentFlow: paymentFlow })
+        body: JSON.stringify({ paymentFlow: paymentFlow, customer_id: customer_id })
       }),
     ])
       .then((responses) => {
@@ -64,7 +68,7 @@ function Payment() {
   return <div className="viewport">
     {clientSecret && hyperPromise && (
       <HyperElements hyper={hyperPromise} options={{ clientSecret }}>
-        <CheckoutForm paymentFlow={paymentFlow} />
+        <CheckoutForm paymentFlow={paymentFlow} customer_id={customer_id} />
       </HyperElements>
     )}
   </div>

@@ -4,7 +4,7 @@ import shirt from "../public/assets/shirt.png";
 import cap from "../public/assets/cap.png";
 import "./css/bootstrap.css";
 
-function RecurringCart() {
+function RecurringCart({ paymentFlow }) {
   return (
     <>
       <div className="App-Container is-noBackground flex-container justify-content-center">
@@ -159,7 +159,7 @@ function RecurringCart() {
                           </div>
                           <div className="flex-item width-fixed">
                             <span className="ProductSummaryTotalAmount-billingInterval Text Text-color--gray500 Text-fontSize--14">
-                              <div>
+                              <div style={{ display: paymentFlow == "ZeroAuth" ? "none" : " " }}>
                                 per <br className="BillingIntervalBreak" />
                                 month
                               </div>
@@ -238,8 +238,7 @@ function RecurringCart() {
                                 className="ExpandableText--truncated"
                                 style={{ WebkitLineClamp: 2 }}
                               >
-                                Togethere's premium plan to work better
-                                togethere
+                                {paymentFlow == "ZeroAuth" ? "June'21 Usage 512GB" : "Togethere's premium plan to work better togethere"}
                               </div>
                             </div>
                           </div>
@@ -247,7 +246,7 @@ function RecurringCart() {
                         <div
                           className="LineItem-description flex-item width-grow"
                         >
-                          <span className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
+                          <span style={{ display: paymentFlow == "ZeroAuth" ? "none" : " " }} className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
                             <div
                               className="AdjustableQuantitySelector-hitBox"
                               data-testid="line-item-adjustable-qty-hit-box"

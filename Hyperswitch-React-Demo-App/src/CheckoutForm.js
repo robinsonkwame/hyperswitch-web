@@ -24,15 +24,23 @@ const SdkPreview = ({ options, isProcessing, hyper, elements, message, payButton
     {message && <div id="payment-message">{message}</div>}</>)
 }
 
-export default function CheckoutForm({ paymentFlow }) {
+export default function CheckoutForm({ paymentFlow, customer_id }) {
   const hyper = useHyper();
+
   const elements = useElements();
   const [isSuccess, setSucces] = useState(null);
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-
+  const [showSdk, setShowSdk] = useState(false);
   function handlePaymentStatus(status) {
+    if (paymentFlow == "ZeroAuth") {
+      setShowSdk(false);
+    } else {
+      window.location.href = `${window.location.origin}/completion?payment_intent_client_secret=${status}&paymentFlow=${paymentFlow}`;
+    }
+  }
+  function handlePaymentStatus2(status) {
     switch (status) {
       case "succeeded":
         setMessage("Payment successful");
@@ -81,7 +89,7 @@ export default function CheckoutForm({ paymentFlow }) {
     if (error) {
       setMessage(error.message);
     } else {
-      setMessage("Unexpected Error");
+      setMessage("");
     }
 
     if (status) {
@@ -110,6 +118,7 @@ export default function CheckoutForm({ paymentFlow }) {
   }, [hyper]);
 
   const options = {
+    disableSaveCards: paymentFlow == "ZeroAuth",
     wallets: {
       walletReturnUrl: `${window.location.origin}/completion`,
       applePay: "auto",
@@ -124,14 +133,15 @@ export default function CheckoutForm({ paymentFlow }) {
 
   return <>
     {paymentFlow == "OneTimePayment" ?
-      <Cart /> : <RecurringCart />}
+      <Cart /> : <RecurringCart paymentFlow={paymentFlow} />}
     <div className="App-Payment is-noBackground">
       <div className="payment-form">
         <form id="payment-form" onSubmit={handleSubmit}>
           {paymentFlow == "ZeroAuth" ?
-            <ZeroAuthView>
+            <ZeroAuthView isProcessing={isProcessing} customer_id={customer_id}
+              showSdk={showSdk} setShowSdk={setShowSdk}>
               <SdkPreview
-                options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText="Save Payment Method"
+                options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText="Subscribe Now"
               />
             </ZeroAuthView> :
             <SdkPreview

@@ -8,70 +8,35 @@ import { TabBar } from "./TabBar";
 import "./css/NavBar.css";
 
 function Home() {
-  const [hyperPromise, setHyperPromise] = useState(null);
-  const [clientSecret, setClientSecret] = useState("");
   const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"]
-  const [paymentView, setPaymentView] = useState(0)
+  const [paymentView, setPaymentView] = useState(2)
   const [loading, setLoading] = useState(0);
   const [isSuccess, setSucces] = useState(null);
   const iframeRef = useRef(null);
 
   console.log(paymentView)
 
-  useEffect(() => {
-    // Promise.all([
-    //   fetch(`${endPoint}/config`),
-    //   fetch(`${endPoint}/urls`),
-    //   fetch(`${endPoint}/create-payment-intent`, {
-    //     method: "POST",
-    //     body: paymentFlow[paymentView]
-    //   }),
-    // ])
-    //   .then((responses) => {
-    //     return Promise.all(responses.map((response) => response.json()));
-    //   })
-    //   .then((dataArray) => {
-    //     const { publishableKey } = dataArray[0];
-    //     const { serverUrl, clientUrl } = dataArray[1];
-    //     const { clientSecret } = dataArray[2];
-    //     setClientSecret(clientSecret);
-    //     const script = document.createElement("script");
-    //     script.src = `${clientUrl}/HyperLoader.js`;
-    //     document.head.appendChild(script);
-    //     script.onload = () => {
-    //       setHyperPromise(
-    //         new Promise((resolve, _) => {
-    //           resolve(
-    //             window.Hyper(publishableKey, {
-    //               customBackendUrl: serverUrl,
-    //             })
-    //           );
-    //         })
-    //       );
-    //     };
+  const generateRandomString = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
 
-    //     script.onerror = () => {
-    //       setHyperPromise(
-    //         new Promise((_, reject) => {
-    //           reject("Script could not be loaded");
-    //         })
-    //       );
-    //     };
-    //   });
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+  };
+
+  let customer_id = generateRandomString(10)
+
+  useEffect(() => {
+
 
     const iframe = iframeRef.current;
 
     const handleURLChange = () => {
       console.log('URL changed:', iframe.contentWindow.location.href);
-      // Perform actions based on the URL change
-
-      // const clientSecret = new URLSearchParams(iframe.contentWindow.location.href).get(
-      //   "payment_intent_client_secret"
-      // );
-      // if (!clientSecret) {
-      //   setSucces(false)
-      //   return;
-      // }
 
       setTimeout(() => {
         setLoading(1)
@@ -100,7 +65,7 @@ function Home() {
           <div className={"Browser" + (loading == 2 ? " Browser-AnimateStep3--entered" : "") + (loading > 0 ? " Browser--desktop" : "")}>
             <div className="Browser-Wrapper">
               <TabBar />
-              <iframe ref={iframeRef} src={`/payment?flow=${paymentFlow[paymentView]}`} />
+              <iframe ref={iframeRef} src={`/payment?flow=${paymentFlow[paymentView]}&customer_id=${customer_id}`} />
             </div>
           </div>
         </div>
