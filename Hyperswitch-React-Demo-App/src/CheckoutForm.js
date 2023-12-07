@@ -4,8 +4,27 @@ import Cart from "./Cart";
 import { useState, useEffect } from "react";
 import { useHyper, useElements } from "@juspay-tech/react-hyper-js";
 import "./index";
+import RecurringCart from "./RecurringCart";
+import ZeroAuthView from "./ZeroAuthView";
 
-export default function CheckoutForm() {
+
+const SdkPreview = ({ options, isProcessing, hyper, elements, message, payButtonText }) => {
+  return (<><div className="paymentElement">
+    <PaymentElement id="payment-element" options={options} />
+  </div>
+    <button
+      disabled={isProcessing || !hyper || !elements}
+      id="submit"
+    >
+      <span id="button-text">
+        {isProcessing ? "Processing ... " : payButtonText}
+      </span>
+    </button>
+    {/* Show any error or success messages */}
+    {message && <div id="payment-message">{message}</div>}</>)
+}
+
+export default function CheckoutForm({ paymentFlow }) {
   const hyper = useHyper();
   const elements = useElements();
   const [isSuccess, setSucces] = useState(null);
@@ -104,25 +123,24 @@ export default function CheckoutForm() {
   };
 
   return <>
-    <Cart />
+    {paymentFlow == "OneTimePayment" ?
+      <Cart /> : <RecurringCart />}
     <div className="App-Payment is-noBackground">
       <div className="payment-form">
         <form id="payment-form" onSubmit={handleSubmit}>
-          <div className="paymentElement">
-            <PaymentElement id="payment-element" options={options} />
-          </div>
-          <button
-            disabled={isProcessing || !hyper || !elements}
-            id="submit"
-          >
-            <span id="button-text">
-              {isProcessing ? "Processing ... " : "Pay now"}
-            </span>
-          </button>
-          {/* Show any error or success messages */}
-          {message && <div id="payment-message">{message}</div>}
+          {paymentFlow == "ZeroAuth" ?
+            <ZeroAuthView>
+              <SdkPreview
+                options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText="Save Payment Method"
+              />
+            </ZeroAuthView> :
+            <SdkPreview
+              options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText={paymentFlow == "OneTimePayment" ? "Pay Now" : "Subscribe Now"}
+            />
+          }
+
         </form>
       </div>
-    </div>
+    </div >
   </>
 }

@@ -7,18 +7,25 @@ import "./css/NavBar.css";
 function Payment() {
   const [hyperPromise, setHyperPromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
-  const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"]
-  const [paymentView, setPaymentView] = useState(0)
 
-  console.log(paymentView)
+  const paymentFlow = new URLSearchParams(window.location.search).get(
+    "flow"
+  );
+
+  console.log(paymentFlow)
 
   useEffect(() => {
+
     Promise.all([
       fetch(`${endPoint}/config`),
       fetch(`${endPoint}/urls`),
       fetch(`${endPoint}/create-payment-intent`, {
         method: "POST",
-        body: paymentFlow[paymentView]
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ paymentFlow: paymentFlow })
       }),
     ])
       .then((responses) => {
@@ -56,9 +63,9 @@ function Payment() {
 
   return <div className="viewport">
     {clientSecret && hyperPromise && (
-      paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
-        <CheckoutForm />
-      </HyperElements>)
+      <HyperElements hyper={hyperPromise} options={{ clientSecret }}>
+        <CheckoutForm paymentFlow={paymentFlow} />
+      </HyperElements>
     )}
   </div>
 }

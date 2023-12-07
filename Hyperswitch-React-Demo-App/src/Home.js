@@ -19,45 +19,45 @@ function Home() {
   console.log(paymentView)
 
   useEffect(() => {
-    Promise.all([
-      fetch(`${endPoint}/config`),
-      fetch(`${endPoint}/urls`),
-      fetch(`${endPoint}/create-payment-intent`, {
-        method: "POST",
-        body: paymentFlow[paymentView]
-      }),
-    ])
-      .then((responses) => {
-        return Promise.all(responses.map((response) => response.json()));
-      })
-      .then((dataArray) => {
-        const { publishableKey } = dataArray[0];
-        const { serverUrl, clientUrl } = dataArray[1];
-        const { clientSecret } = dataArray[2];
-        setClientSecret(clientSecret);
-        const script = document.createElement("script");
-        script.src = `${clientUrl}/HyperLoader.js`;
-        document.head.appendChild(script);
-        script.onload = () => {
-          setHyperPromise(
-            new Promise((resolve, _) => {
-              resolve(
-                window.Hyper(publishableKey, {
-                  customBackendUrl: serverUrl,
-                })
-              );
-            })
-          );
-        };
+    // Promise.all([
+    //   fetch(`${endPoint}/config`),
+    //   fetch(`${endPoint}/urls`),
+    //   fetch(`${endPoint}/create-payment-intent`, {
+    //     method: "POST",
+    //     body: paymentFlow[paymentView]
+    //   }),
+    // ])
+    //   .then((responses) => {
+    //     return Promise.all(responses.map((response) => response.json()));
+    //   })
+    //   .then((dataArray) => {
+    //     const { publishableKey } = dataArray[0];
+    //     const { serverUrl, clientUrl } = dataArray[1];
+    //     const { clientSecret } = dataArray[2];
+    //     setClientSecret(clientSecret);
+    //     const script = document.createElement("script");
+    //     script.src = `${clientUrl}/HyperLoader.js`;
+    //     document.head.appendChild(script);
+    //     script.onload = () => {
+    //       setHyperPromise(
+    //         new Promise((resolve, _) => {
+    //           resolve(
+    //             window.Hyper(publishableKey, {
+    //               customBackendUrl: serverUrl,
+    //             })
+    //           );
+    //         })
+    //       );
+    //     };
 
-        script.onerror = () => {
-          setHyperPromise(
-            new Promise((_, reject) => {
-              reject("Script could not be loaded");
-            })
-          );
-        };
-      });
+    //     script.onerror = () => {
+    //       setHyperPromise(
+    //         new Promise((_, reject) => {
+    //           reject("Script could not be loaded");
+    //         })
+    //       );
+    //     };
+    //   });
 
     const iframe = iframeRef.current;
 
@@ -100,7 +100,7 @@ function Home() {
           <div className={"Browser" + (loading == 2 ? " Browser-AnimateStep3--entered" : "") + (loading > 0 ? " Browser--desktop" : "")}>
             <div className="Browser-Wrapper">
               <TabBar />
-              <iframe ref={iframeRef} src={"/payment"} />
+              <iframe ref={iframeRef} src={`/payment?flow=${paymentFlow[paymentView]}`} />
             </div>
           </div>
         </div>

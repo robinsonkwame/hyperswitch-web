@@ -6,6 +6,7 @@ const { resolve } = require("path");
 // Replace if using a different env file or config
 const env = require("dotenv").config({ path: "./.env" });
 app.use(express.static("./dist"));
+app.use(express.json());
 app.get("/", (req, res) => {
   const path = resolve("./dist" + "/index.html");
   res.sendFile(path);
@@ -43,22 +44,27 @@ app.get("/urls", (req, res) => {
 
 app.post("/create-payment-intent", async (req, res) => {
   try {
+
+    console.log("aaaaaa", req.body)
+
+    const paymentFlow = req.body.paymentFlow
+
     var paymentIntent;
     const request = {
-      currency: "USD",
+      // profile_id: "pro_bpgbEC5OdE27gyEhgW2Y",
       amount: 2999,
-      order_details: [
-        {
-          product_name: "Apple iphone 15",
-          quantity: 1,
-          amount: 2999,
-        },
-      ],
+      // order_details: [
+      //   {
+      //     product_name: "Apple iphone 15",
+      //     quantity: 1,
+      //     amount: 2999,
+      //   },
+      // ],
       currency: "USD",
       confirm: false,
       capture_method: "automatic",
       authentication_type: "three_ds",
-      customer_id: "hyperswitch_sdk_demo_id",
+      customer_id: "fisfncids",
       email: "hyperswitch_sdk_demo_id@gmail.com",
       description: "Hello this is description",
       // allowed_payment_method_types:["sofort"],
@@ -107,6 +113,26 @@ app.post("/create-payment-intent", async (req, res) => {
         login_date: "2019-09-10T10:11:12Z",
       },
     };
+
+    if (paymentFlow !== "OneTimePayment") {
+      request.setup_future_usage = "off_session"
+      request.mandate_data = {
+        "mandate_type": {
+          "multi_use": {
+            "amount": 2999,
+            "currency": "USD"
+          }
+        }
+      }
+    }
+
+    if (paymentFlow == "ZeroAuth") {
+      request.amount = 0
+      request.order_details = null
+    }
+
+    console.log(JSON.stringify(request))
+
     if (SERVER_URL) {
       const apiResponse = await fetch(
         `${process.env.HYPERSWITCH_SERVER_URL}/payments`,

@@ -14,7 +14,7 @@ function Completion(props) {
           store, your items would have been on their way.
         </div>
         <div>
-          <a className="returnLink" href="/">
+          <a className="returnLink" href="/payment">
             Try hyperswitch Playground again
           </a>
         </div>
