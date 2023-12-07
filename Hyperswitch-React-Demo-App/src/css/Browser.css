@@ -51,6 +51,13 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  transform-origin: top left;
+  transition: opacity 300ms;
+  opacity: 0;
+}
+
+.Browser--desktop .Browser-Wrapper {
+  opacity: 1;
 }
 
 .Browser-MobileWrapper {

@@ -1,16 +1,14 @@
+import React from "react";
 import { PaymentElement } from "@juspay-tech/react-hyper-js";
 import Cart from "./Cart";
 import { useState, useEffect } from "react";
 import { useHyper, useElements } from "@juspay-tech/react-hyper-js";
 import "./index";
-import React from "react";
-import Completion from "./Completion";
-import { TabBar } from "./TabBar";
 
 export default function CheckoutForm() {
   const hyper = useHyper();
   const elements = useElements();
-  const [isSuccess, setSucces] = useState(false);
+  const [isSuccess, setSucces] = useState(null);
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -57,7 +55,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}`,
+        return_url: `${window.location.origin}/completion`,
       },
     });
 
@@ -83,6 +81,7 @@ export default function CheckoutForm() {
       "payment_intent_client_secret"
     );
     if (!clientSecret) {
+      setSucces(false)
       return;
     }
     hyper.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
@@ -93,7 +92,7 @@ export default function CheckoutForm() {
 
   const options = {
     wallets: {
-      walletReturnUrl: `${window.location.origin}`,
+      walletReturnUrl: `${window.location.origin}/completion`,
       applePay: "auto",
       googlePay: "auto",
       style: {
@@ -104,39 +103,26 @@ export default function CheckoutForm() {
     },
   };
 
-  return (
-    <div className="Browser Browser-AnimateStep3--entered Browser--desktop">
-      <div className="Browser-Wrapper">
-        <TabBar />
-        <div className="viewport">
-          {!isSuccess ? (
-            <>
-              <Cart />
-              <div className="App-Payment is-noBackground">
-                <div className="payment-form">
-                  <form id="payment-form" onSubmit={handleSubmit}>
-                    <div className="paymentElement">
-                      <PaymentElement id="payment-element" options={options} />
-                    </div>
-                    <button
-                      disabled={isProcessing || !hyper || !elements}
-                      id="submit"
-                    >
-                      <span id="button-text">
-                        {isProcessing ? "Processing ... " : "Pay now"}
-                      </span>
-                    </button>
-                    {/* Show any error or success messages */}
-                    {message && <div id="payment-message">{message}</div>}
-                  </form>
-                </div>
-              </div>
-            </>
-          ) : (
-            <Completion />
-          )}
-        </div>
+  return <>
+    <Cart />
+    <div className="App-Payment is-noBackground">
+      <div className="payment-form">
+        <form id="payment-form" onSubmit={handleSubmit}>
+          <div className="paymentElement">
+            <PaymentElement id="payment-element" options={options} />
+          </div>
+          <button
+            disabled={isProcessing || !hyper || !elements}
+            id="submit"
+          >
+            <span id="button-text">
+              {isProcessing ? "Processing ... " : "Pay now"}
+            </span>
+          </button>
+          {/* Show any error or success messages */}
+          {message && <div id="payment-message">{message}</div>}
+        </form>
       </div>
     </div>
-  );
+  </>
 }

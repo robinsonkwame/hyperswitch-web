@@ -20,8 +20,8 @@ module.exports = (endpoint, publicPath = "auto") => {
       clean: true,
     },
     optimization: {
-      sideEffects: true,
-      minimize: true,
+      sideEffects: false,
+      minimize: false,
       minimizer: [
         new TerserPlugin({
           terserOptions: {

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { HyperElements } from "@juspay-tech/react-hyper-js";
 import CheckoutForm from "./CheckoutForm";
-import { Header } from "./Header";
-import { NavBarContent } from "./NavBarContent";
 import "./css/NavBar.css";
 
 function Payment() {
@@ -56,23 +54,13 @@ function Payment() {
       });
   }, []);
 
-  return (
-    <div className="mainConatiner">
-      <div className="Navbar">
-        <Header />
-        <NavBarContent paymentView={paymentView} setPaymentView={setPaymentView} />
-      </div>
-      <main>
-        <div className="container">
-          {clientSecret && hyperPromise && (
-            paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
-              <CheckoutForm />
-            </HyperElements>)
-          )}
-        </div>
-      </main>
-    </div >
-  );
+  return <div className="viewport">
+    {clientSecret && hyperPromise && (
+      paymentView == 0 && (<HyperElements hyper={hyperPromise} options={{ clientSecret }}>
+        <CheckoutForm />
+      </HyperElements>)
+    )}
+  </div>
 }
 
 export default Payment;
