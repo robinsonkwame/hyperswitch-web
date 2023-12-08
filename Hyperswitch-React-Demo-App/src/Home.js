@@ -8,17 +8,18 @@ import { TabBar } from "./TabBar";
 import "./css/NavBar.css";
 
 function Home() {
-  const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"]
-  const [paymentView, setPaymentView] = useState(2)
+  const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"];
+  const [paymentView, setPaymentView] = useState(0);
   const [loading, setLoading] = useState(0);
   const [isSuccess, setSucces] = useState(null);
   const iframeRef = useRef(null);
 
-  console.log(paymentView)
+  console.log(paymentView);
 
   const generateRandomString = (length) => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
     const charactersLength = characters.length;
 
     for (let i = 0; i < length; i++) {
@@ -28,19 +29,17 @@ function Home() {
     return result;
   };
 
-  let customer_id = generateRandomString(10)
+  let customer_id = generateRandomString(10);
 
   useEffect(() => {
-
-
     const iframe = iframeRef.current;
 
     const handleURLChange = () => {
-      console.log('URL changed:', iframe.contentWindow.location.href);
+      console.log("URL changed:", iframe.contentWindow.location.href);
 
       setTimeout(() => {
-        setLoading(1)
-      }, 300)
+        setLoading(1);
+      }, 300);
     };
 
     if (iframe) {
@@ -58,19 +57,31 @@ function Home() {
     <div className="mainConatiner">
       <div className="Navbar">
         <Header />
-        <NavBarContent paymentView={paymentView} setPaymentView={setPaymentView} />
+        <NavBarContent
+          paymentView={paymentView}
+          setPaymentView={setPaymentView}
+        />
       </div>
       <main>
         <div className="container">
-          <div className={"Browser" + (loading == 2 ? " Browser-AnimateStep3--entered" : "") + (loading > 0 ? " Browser--desktop" : "")}>
+          <div
+            className={
+              "Browser" +
+              (loading == 2 ? " Browser-AnimateStep3--entered" : "") +
+              (loading > 0 ? " Browser--desktop" : "")
+            }
+          >
             <div className="Browser-Wrapper">
               <TabBar />
-              <iframe ref={iframeRef} src={`/payment?flow=${paymentFlow[paymentView]}&customer_id=${customer_id}`} />
+              <iframe
+                ref={iframeRef}
+                src={`/payment?flow=${paymentFlow[paymentView]}&customer_id=${customer_id}`}
+              />
             </div>
           </div>
         </div>
       </main>
-    </div >
+    </div>
   );
 }
 
