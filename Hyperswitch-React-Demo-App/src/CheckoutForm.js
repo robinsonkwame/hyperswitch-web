@@ -7,22 +7,29 @@ import "./index";
 import RecurringCart from "./RecurringCart";
 import ZeroAuthView from "./ZeroAuthView";
 
-
-const SdkPreview = ({ options, isProcessing, hyper, elements, message, payButtonText }) => {
-  return (<><div className="paymentElement">
-    <PaymentElement id="payment-element" options={options} />
-  </div>
-    <button
-      disabled={isProcessing || !hyper || !elements}
-      id="submit"
-    >
-      <span id="button-text">
-        {isProcessing ? "Processing ... " : payButtonText}
-      </span>
-    </button>
-    {/* Show any error or success messages */}
-    {message && <div id="payment-message">{message}</div>}</>)
-}
+const SdkPreview = ({
+  options,
+  isProcessing,
+  hyper,
+  elements,
+  message,
+  payButtonText,
+}) => {
+  return (
+    <>
+      <div className="paymentElement">
+        <PaymentElement id="payment-element" options={options} />
+      </div>
+      <button disabled={isProcessing || !hyper || !elements} id="submit">
+        <span id="button-text">
+          {isProcessing ? "Processing ... " : payButtonText}
+        </span>
+      </button>
+      {/* Show any error or success messages */}
+      {message && <div id="payment-message">{message}</div>}
+    </>
+  );
+};
 
 export default function CheckoutForm({ paymentFlow, customer_id }) {
   const hyper = useHyper();
@@ -82,7 +89,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
       "payment_intent_client_secret"
     );
     if (!clientSecret) {
-      setSucces(false)
+      setSucces(false);
       return;
     }
     hyper.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
@@ -92,6 +99,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
   }, [hyper]);
 
   const options = {
+    showCardFormByDefault: false,
     disableSaveCards: paymentFlow == "ZeroAuth",
     wallets: {
       walletReturnUrl: `${window.location.origin}/completion?paymentFlow=${paymentFlow}&customer_id=${customer_id}`,
@@ -105,26 +113,47 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
     },
   };
 
-  return <>
-    {paymentFlow == "OneTimePayment" ?
-      <Cart /> : <RecurringCart paymentFlow={paymentFlow} />}
-    <div className="App-Payment is-noBackground">
-      <div className="payment-form">
-        <form id="payment-form" onSubmit={handleSubmit}>
-          {paymentFlow == "ZeroAuth" ?
-            <ZeroAuthView isProcessing={isProcessing} customer_id={customer_id}
-              showSdk={showSdk} setShowSdk={setShowSdk}>
+  return (
+    <>
+      {paymentFlow == "OneTimePayment" ? (
+        <Cart />
+      ) : (
+        <RecurringCart paymentFlow={paymentFlow} />
+      )}
+      <div className="App-Payment is-noBackground">
+        <div className="payment-form">
+          <form id="payment-form" onSubmit={handleSubmit}>
+            {paymentFlow == "ZeroAuth" ? (
+              <ZeroAuthView
+                isProcessing={isProcessing}
+                customer_id={customer_id}
+                showSdk={showSdk}
+                setShowSdk={setShowSdk}
+              >
+                <SdkPreview
+                  options={options}
+                  isProcessing={isProcessing}
+                  hyper={hyper}
+                  elements={elements}
+                  message={message}
+                  payButtonText="Subscribe Now"
+                />
+              </ZeroAuthView>
+            ) : (
               <SdkPreview
-                options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText="Subscribe Now"
+                options={options}
+                isProcessing={isProcessing}
+                hyper={hyper}
+                elements={elements}
+                message={message}
+                payButtonText={
+                  paymentFlow == "OneTimePayment" ? "Pay Now" : "Subscribe Now"
+                }
               />
-            </ZeroAuthView> :
-            <SdkPreview
-              options={options} isProcessing={isProcessing} hyper={hyper} elements={elements} message={message} payButtonText={paymentFlow == "OneTimePayment" ? "Pay Now" : "Subscribe Now"}
-            />
-          }
-
-        </form>
+            )}
+          </form>
+        </div>
       </div>
-    </div >
-  </>
+    </>
+  );
 }
