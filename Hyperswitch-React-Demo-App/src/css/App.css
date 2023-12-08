@@ -215,3 +215,18 @@ iframe {
     "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 24px;
 }
+
+.paymentElement {
+  min-height: 480px;
+  opacity: 0;
+  animation: 0s fadeInAnimation 1s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
