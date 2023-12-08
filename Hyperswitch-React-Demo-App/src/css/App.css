@@ -37,7 +37,7 @@ form > * {
 
 button {
   background-color: var(--accent-color);
-  width: 100%;
+  /* width: 100%; */
 }
 
 button {
@@ -113,6 +113,7 @@ select {
   flex-direction: column;
   width: 80%;
   height: 100%;
+  max-width: 500px;
 }
 
 #messages {
@@ -145,10 +146,36 @@ header {
   width: 50% !important;
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 990px) {
   .App-Container,
   .App-Payment {
     width: 100% !important;
+  }
+}
+
+.showOnWeb {
+  display: none;
+}
+@media only screen and (max-width: 500px) {
+  #payment-form {
+    width: 100%;
+    margin-top: -30px;
+    margin-bottom: 30px;
+  }
+  .Header {
+    height: var(--checkout-header-size);
+    left: 0;
+    margin-bottom: 0;
+    padding: var(--space-4);
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease-out;
+    width: 100vw;
+  }
+
+  .OrderSummaryColumn {
+    margin-top: 80px;
   }
 }
 

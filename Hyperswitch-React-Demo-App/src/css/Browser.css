@@ -14,12 +14,12 @@
   height: 789px;
 }
 
-.Browser.Browser-AnimateStep3--exited {
+.Browser-AnimateStep3--exited {
   width: 720px;
   height: 505px;
 }
 
-.Browser.Browser-AnimateStep2--exited {
+.Browser-AnimateStep2--exited {
   width: calc(100% - 32px) !important;
   height: 789px !important;
 }
@@ -34,8 +34,15 @@
   }
 }
 
+@media (max-width: 1000px) {
+  .Browser {
+    width: 300px;
+    border-radius: 48px;
+  }
+}
+
 .Browser--mobile {
-  width: 336px;
+  width: 350px;
   border-radius: 48px;
   box-shadow: 0px 20px 44px rgba(50, 50, 93, 0.12),
     0px -1px 32px rgba(50, 50, 93, 0.06), 0px 3px 12px rgba(0, 0, 0, 0.08),
@@ -56,7 +63,8 @@
   opacity: 0;
 }
 
-.Browser--desktop .Browser-Wrapper {
+.Browser--desktop .Browser-Wrapper,
+.Browser--mobile .Browser-Wrapper {
   opacity: 1;
 }
 

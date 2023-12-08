@@ -8,8 +8,14 @@ function Cart() {
   return (
     <>
       <div className="App-Container is-noBackground flex-container justify-content-center">
-        <div className="App-Overview" style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
-          <header className="Header" style={{ backgroundColor: 'rgb(255, 255, 255)' }}>
+        <div
+          className="App-Overview"
+          style={{ backgroundColor: "rgb(255, 255, 255)" }}
+        >
+          <header
+            className="Header"
+            style={{ backgroundColor: "rgb(255, 255, 255)" }}
+          >
             <div className="Header-content flex-container justify-content-space-between align-items-stretch">
               <div className="Header-business flex-item width-grow flex-container align-items-center">
                 <a
@@ -18,11 +24,11 @@ function Cart() {
                   title="Powdur"
                   target="_self"
                 >
-                  <div style={{ position: 'relative' }}>
+                  <div style={{ position: "relative" }}>
                     <div className="flex-container align-items-center">
                       <div
                         className="Header-backArrowContainer"
-                        style={{ opacity: 1, transform: 'none' }}
+                        style={{ opacity: 1, transform: "none" }}
                       >
                         <svg
                           className="InlineSVG Icon Header-backArrow mr2 Icon--sm"
@@ -42,7 +48,10 @@ function Cart() {
                         style={{ transform: "none" }}
                       >
                         <div className="Header-merchantLogoWithLabel flex-item width-grow">
-                          <div className="Tooltip-Context " style={{ padding: "0px" }}>
+                          <div
+                            className="Tooltip-Context "
+                            style={{ padding: "0px" }}
+                          >
                             <div className="HeaderImage HeaderImage--icon flex-item width-fixed flex-container justify-content-center align-items-center width-fixed">
                               <img
                                 className="HeaderImage-imageIcon"
@@ -93,7 +102,11 @@ function Cart() {
                     </svg>
                     <div
                       className="Header-detailsLabel"
-                      style={{ position: "unset", opacity: 1, transform: "none" }}
+                      style={{
+                        position: "unset",
+                        opacity: 1,
+                        transform: "none",
+                      }}
                     >
                       <span className="Text Text-color--default Text-fontSize--13 Text-fontWeight--400 Text--truncate">
                         Details
@@ -104,7 +117,10 @@ function Cart() {
               </div>
             </div>
           </header>
-          <div className="OrderSummaryColumn" data-testid="order-summary-column">
+          <div
+            className="OrderSummaryColumn"
+            data-testid="order-summary-column"
+          >
             <div
               data-testid="product-summary"
               className="ProductSummary is-clickable"
@@ -113,7 +129,10 @@ function Cart() {
                 className="ProductSummary-productImageContainer is-clickable"
                 data-testid="product-summary-product-image"
               >
-                <div className="ProductImage-container" data-testid="product-image">
+                <div
+                  className="ProductImage-container"
+                  data-testid="product-image"
+                >
                   <img
                     src="https://stripe-camo.global.ssl.fastly.net/c25a949b6f1ffabee9af1a5696d7f152325bdce2d1b926456d42994c3d91ad78/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f666c5f746573745f67625631776635726a4c64725a635858647032346d643649"
                     alt="The Pure Set"
@@ -130,7 +149,10 @@ function Cart() {
                   Pay Powdur
                 </span>
                 <div className="ProductSummary-amountsContainer">
-                  <div className="ProductSummary-totalsRead" style={{ opacity: 1 }}>
+                  <div
+                    className="ProductSummary-totalsRead"
+                    style={{ opacity: 1 }}
+                  >
                     <div
                       className="ProductSummary-totalAmountContainer is-clickable"
                       style={{ opacity: 1 }}
@@ -153,7 +175,31 @@ function Cart() {
                 <div
                   className="ProductSummary-buttonsContainer"
                   data-testid="product-summary-buttons"
-                ></div>
+                >
+                  <button
+                    className="Button ProductSummary-actionButton Button--primary Button--md"
+                    type="button"
+                    data-testid="product-summary-view-details"
+                  >
+                    <div className="flex-container justify-content-center align-items-center">
+                      <svg
+                        className="InlineSVG Icon Button-Icon Button-Icon--right Icon--sm Icon--square"
+                        focusable="false"
+                        fill="#000000"
+                        color="#000000"
+                        viewBox="0 0 12 12"
+                      >
+                        <path
+                          d="M10.193 3.97a.75.75 0 0 1 1.062 1.062L6.53 9.756a.75.75 0 0 1-1.06 0L.745 5.032A.75.75 0 0 1 1.807 3.97L6 8.163l4.193-4.193z"
+                          fillRule="evenodd"
+                        ></path>
+                      </svg>
+                      <span className="Text Text-color--default Text-fontWeight--500 Text--truncate">
+                        View details
+                      </span>
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
             <section
@@ -163,7 +209,12 @@ function Cart() {
               <ul className="OrderDetails-items">
                 <li
                   className="OrderDetails-item"
-                  style={{ opacity: 1, transform: 'scale(1)', height: 'auto', marginBottom: '16px' }}
+                  style={{
+                    opacity: 1,
+                    transform: "scale(1)",
+                    height: "auto",
+                    marginBottom: "16px",
+                  }}
                 >
                   <div className="LineItem flex-container align-items-flex-start">
                     <div
@@ -199,9 +250,7 @@ function Cart() {
                         className="flex-container wrap-wrap"
                         style={{ width: "100%" }}
                       >
-                        <div
-                          className="LineItem-description flex-item width-grow"
-                        >
+                        <div className="LineItem-description flex-item width-grow">
                           <span className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
                             <div
                               className="AdjustableQuantitySelector-hitBox"
@@ -242,9 +291,7 @@ function Cart() {
                           data-testid="line-item-amount-detail"
                         ></div>
                       </div>
-                      <div
-                        className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left"
-                      >
+                      <div className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left">
                         <div
                           className="flex-container"
                           data-testid="line-item-tiers"
@@ -263,7 +310,12 @@ function Cart() {
                 </li>
                 <li
                   className="OrderDetails-item"
-                  style={{ opacity: 1, transform: 'scale(1)', height: 'auto', marginBottom: '16px' }}
+                  style={{
+                    opacity: 1,
+                    transform: "scale(1)",
+                    height: "auto",
+                    marginBottom: "16px",
+                  }}
                 >
                   <div className="LineItem flex-container align-items-flex-start">
                     <div
@@ -277,7 +329,7 @@ function Cart() {
                       />
                     </div>
                     <div className="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow">
-                      <div className="flex-column-break" ></div>
+                      <div className="flex-column-break"></div>
                       <div className="flex-column-break"></div>
                       <div
                         className="LineItem-productName flex-item width-auto"
@@ -299,9 +351,7 @@ function Cart() {
                         className="flex-container wrap-wrap"
                         style={{ width: "100%", order: 3 }}
                       >
-                        <div
-                          className="LineItem-description flex-item width-grow"
-                        >
+                        <div className="LineItem-description flex-item width-grow">
                           <span className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
                             <div
                               className="AdjustableQuantitySelector-hitBox"
@@ -346,9 +396,7 @@ function Cart() {
                           </span>
                         </div>
                       </div>
-                      <div
-                        className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left"
-                      >
+                      <div className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left">
                         <div
                           className="flex-container"
                           data-testid="line-item-tiers"
@@ -369,7 +417,6 @@ function Cart() {
               <div className="OrderDetails-footer"></div>
             </section>
           </div>
-
         </div>
       </div>
       {/* <div className="cart">

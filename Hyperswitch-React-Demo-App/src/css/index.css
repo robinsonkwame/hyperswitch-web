@@ -273,7 +273,7 @@ main {
   flex-direction: column;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 990px) {
   .viewport {
     flex-direction: column;
     overflow-y: scroll;

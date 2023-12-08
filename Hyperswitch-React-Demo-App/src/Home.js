@@ -10,7 +10,7 @@ import "./css/NavBar.css";
 function Home() {
   const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"];
   const [paymentView, setPaymentView] = useState(0);
-  const [loading, setLoading] = useState(0);
+  const [loading, setLoading] = useState(false);
   const iframeRef = useRef(null);
 
   const generateRandomString = (length) => {
@@ -35,8 +35,8 @@ function Home() {
       console.log(iframe.contentWindow.location.href);
 
       setTimeout(() => {
-        setLoading(1);
-      }, 300);
+        setLoading(true);
+      }, 0);
     };
 
     if (iframe) {
@@ -64,11 +64,21 @@ function Home() {
           <div
             className={
               "Browser" +
-              (loading == 2 ? " Browser-AnimateStep3--entered" : "") +
-              (loading > 0 ? " Browser--desktop" : "")
+              // (!loading
+              //   ? " Browser-AnimateStep3--exited"
+              //   : " Browser-AnimateStep3--entered") +
+              (loading
+                ? " Browser--" +
+                  (window.innerWidth < 1000 ? "mobile" : "desktop")
+                : "")
             }
           >
-            <div className="Browser-Wrapper">
+            <div
+              className={
+                "Browser-Wrapper" +
+                (window.innerWidth < 1000 ? " Browser-MobileWrapper" : "")
+              }
+            >
               <TabBar />
               <iframe
                 ref={iframeRef}
