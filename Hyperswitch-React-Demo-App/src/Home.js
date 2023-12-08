@@ -11,10 +11,7 @@ function Home() {
   const paymentFlow = ["OneTimePayment", "RecurringPayment", "ZeroAuth"];
   const [paymentView, setPaymentView] = useState(0);
   const [loading, setLoading] = useState(0);
-  const [isSuccess, setSucces] = useState(null);
   const iframeRef = useRef(null);
-
-  console.log(paymentView);
 
   const generateRandomString = (length) => {
     const characters =
@@ -35,7 +32,7 @@ function Home() {
     const iframe = iframeRef.current;
 
     const handleURLChange = () => {
-      console.log("URL changed:", iframe.contentWindow.location.href);
+      console.log(iframe.contentWindow.location.href);
 
       setTimeout(() => {
         setLoading(1);

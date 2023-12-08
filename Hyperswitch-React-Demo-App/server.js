@@ -69,7 +69,7 @@ app.post("/create-payment-intent", async (req, res) => {
       currency: "USD",
       confirm: false,
       capture_method: "automatic",
-      authentication_type: "three_ds",
+      authentication_type: "no_three_ds",
       customer_id: req.body.customer_id,
       email: "hyperswitch_sdk_demo_id@gmail.com",
       description: "Hello this is description",

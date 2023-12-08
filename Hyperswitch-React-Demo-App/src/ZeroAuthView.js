@@ -20,7 +20,6 @@ const ZeroAuthView = ({ children, isProcessing, showSdk, setShowSdk, customer_id
                     return data.json();
                 })
                 .then((res) => {
-                    console.log(res);
                     setCardData((_) => res.data);
                 }) : null
         }
@@ -39,10 +38,8 @@ const ZeroAuthView = ({ children, isProcessing, showSdk, setShowSdk, customer_id
                 disabled={selectedCard == null || processing}
                 style={{ marginBottom: 20 }}
                 onClick={(e) => {
-
                     e.preventDefault();
                     setProcessing(_ => true)
-                    console.log("selectedCard", selectedCard)
                     selectedCard.customer_id = customer_id
                     fetch(`${endPoint}/confirm-mandate`, {
                         method: "POST",
@@ -56,10 +53,8 @@ const ZeroAuthView = ({ children, isProcessing, showSdk, setShowSdk, customer_id
                             return data.json();
                         })
                         .then((res) => {
-                            console.log(res);
-                            window.location.href = `${window.location.origin}/completion?payment_intent_client_secret=${res.status}&paymentFlow=ZeroAuth`;
                             setProcessing(_ => false)
-
+                            window.location.href = `${window.location.origin}/completion?status=${res.status}&paymentFlow=ZeroAuth&customer_id=${customer_id}`;
                         })
 
                 }}

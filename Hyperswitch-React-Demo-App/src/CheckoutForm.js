@@ -37,33 +37,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
     if (paymentFlow == "ZeroAuth") {
       setShowSdk(false);
     } else {
-      window.location.href = `${window.location.origin}/completion?payment_intent_client_secret=${status}&paymentFlow=${paymentFlow}`;
-    }
-  }
-  function handlePaymentStatus2(status) {
-    switch (status) {
-      case "succeeded":
-        setMessage("Payment successful");
-        setSucces(true);
-        break;
-      case "processing":
-        setMessage("Your payment is processing.");
-        break;
-      case "requires_payment_method":
-        setMessage("Your payment was not successful, please try again.");
-        break;
-      case "requires_capture":
-        setMessage("Payment processing! Requires manual capture");
-        break;
-      case "requires_customer_action":
-        setMessage("Customer needs to take action to confirm this payment");
-        break;
-      case "failed":
-        setMessage("Payment Failed!");
-        break;
-      default:
-        setMessage(`Something went wrong. (Status: ${status})`);
-        break;
+      window.location.href = `${window.location.origin}/completion?status=${status}&paymentFlow=${paymentFlow}&customer_id=${customer_id}`;
     }
   }
 
@@ -82,7 +56,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/completion`,
+        return_url: `${window.location.origin}/completion?paymentFlow=${paymentFlow}&customer_id=${customer_id}`,
       },
     });
 
@@ -120,7 +94,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
   const options = {
     disableSaveCards: paymentFlow == "ZeroAuth",
     wallets: {
-      walletReturnUrl: `${window.location.origin}/completion`,
+      walletReturnUrl: `${window.location.origin}/completion?paymentFlow=${paymentFlow}&customer_id=${customer_id}`,
       applePay: "auto",
       googlePay: "auto",
       style: {
