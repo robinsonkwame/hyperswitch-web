@@ -1,5 +1,5 @@
 NS ?= juspaydotin
-VERSION ?= v1.0.4
+VERSION ?= v1.0.6
 IMAGE_NAME ?= hyperswitch-web
 BRANCH_NAME ?= $(shell git rev-parse --abbrev-ref HEAD)
 CONTAINER_NAME ?= hyperswitch-web

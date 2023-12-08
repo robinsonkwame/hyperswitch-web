@@ -42,9 +42,19 @@ app.get("/urls", (req, res) => {
   });
 });
 
+app.get("/payment", (req, res) => {
+  const path = resolve("./dist" + "/index.html");
+  res.sendFile(path);
+});
+
+app.get("/complete", (req, res) => {
+  const path = resolve("./dist" + "/index.html");
+  res.sendFile(path);
+});
+
 app.post("/create-payment-intent", async (req, res) => {
   try {
-    const paymentFlow = req.body.paymentFlow
+    const paymentFlow = req.body.paymentFlow;
     var paymentIntent;
     const request = {
       // profile_id: "pro_bpgbEC5OdE27gyEhgW2Y",
@@ -111,20 +121,20 @@ app.post("/create-payment-intent", async (req, res) => {
     };
 
     if (paymentFlow !== "OneTimePayment") {
-      request.setup_future_usage = "off_session"
+      request.setup_future_usage = "off_session";
       request.mandate_data = {
-        "mandate_type": {
-          "multi_use": {
-            "amount": 2999,
-            "currency": "USD"
-          }
-        }
-      }
+        mandate_type: {
+          multi_use: {
+            amount: 2999,
+            currency: "USD",
+          },
+        },
+      };
     }
 
     if (paymentFlow == "ZeroAuth") {
-      request.amount = 0
-      request.order_details = null
+      request.amount = 0;
+      request.order_details = null;
     }
 
     if (SERVER_URL) {
@@ -166,16 +176,18 @@ app.post("/create-payment-intent", async (req, res) => {
 
 app.post("/get-mandate-data", async (req, res) => {
   try {
-
-    let response = await fetch(`${process.env.HYPERSWITCH_SERVER_URL}/customers/${req.body.customer_id}/mandates`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'api-key': process.env.HYPERSWITCH_SECRET_KEY
+    let response = await fetch(
+      `${process.env.HYPERSWITCH_SERVER_URL}/customers/${req.body.customer_id}/mandates`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "api-key": process.env.HYPERSWITCH_SECRET_KEY,
+        },
       }
-    })
+    );
 
-    let resData = await response.json()
+    let resData = await response.json();
     res.send({
       data: resData.error ? [] : resData,
     });
@@ -186,66 +198,70 @@ app.post("/get-mandate-data", async (req, res) => {
 
 app.post("/confirm-mandate", async (req, res) => {
   try {
-
     let reqBody = req.body;
 
     let request = {
-      "amount": 1000,
-      "currency": "USD",
-      "confirm": true,
-      "capture_method": "automatic",
-      "amount_to_capture": 1000,
-      "customer_id": reqBody.customer_id,
-      "description": "Its my first payment request",
-      "return_url": "https://google.com",
-      "mandate_id": reqBody.mandate_id,
+      amount: 1000,
+      currency: "USD",
+      confirm: true,
+      capture_method: "automatic",
+      amount_to_capture: 1000,
+      customer_id: reqBody.customer_id,
+      description: "Its my first payment request",
+      return_url: "https://google.com",
+      mandate_id: reqBody.mandate_id,
       // "profile_id": "pro_bpgbEC5OdE27gyEhgW2Y",
-      "off_session": true,
-      "browser_info": {
-        "user_agent": "Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/70.0.3538.110 Safari\/537.36",
-        "accept_header": "text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,image\/apng,*\/*;q=0.8",
-        "language": "nl-NL",
-        "color_depth": 24,
-        "screen_height": 723,
-        "screen_width": 1536,
-        "time_zone": 0,
-        "java_enabled": true,
-        "java_script_enabled": true,
-        "ip_address": "125.0.0.1"
+      off_session: true,
+      browser_info: {
+        user_agent:
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36",
+        accept_header:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        language: "nl-NL",
+        color_depth: 24,
+        screen_height: 723,
+        screen_width: 1536,
+        time_zone: 0,
+        java_enabled: true,
+        java_script_enabled: true,
+        ip_address: "125.0.0.1",
       },
-      "billing": {
-        "address": {
-          "first_name": "John",
-          "last_name": "Doe",
-          "line1": "1467",
-          "line2": "Harrison Street",
-          "line3": "Harrison Street",
-          "city": "San Fransico",
-          "state": "California",
-          "zip": "94122",
-          "country": "US"
+      billing: {
+        address: {
+          first_name: "John",
+          last_name: "Doe",
+          line1: "1467",
+          line2: "Harrison Street",
+          line3: "Harrison Street",
+          city: "San Fransico",
+          state: "California",
+          zip: "94122",
+          country: "US",
         },
-        "phone": {
-          "number": "8056594427",
-          "country_code": "+91"
-        }
+        phone: {
+          number: "8056594427",
+          country_code: "+91",
+        },
       },
-      "metadata": {
-        "udf1": "value1",
-        "new_customer": "true",
-        "login_date": "2019-09-10T10:11:12Z"
-      }
-    }
+      metadata: {
+        udf1: "value1",
+        new_customer: "true",
+        login_date: "2019-09-10T10:11:12Z",
+      },
+    };
 
-    let response = await fetch(`${process.env.HYPERSWITCH_SERVER_URL}/payments`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'api-key': process.env.HYPERSWITCH_SECRET_KEY
-      },
-      body: JSON.stringify(request)
-    })
+    let response = await fetch(
+      `${process.env.HYPERSWITCH_SERVER_URL}/payments`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "api-key": process.env.HYPERSWITCH_SECRET_KEY,
+        },
+        body: JSON.stringify(request),
+      }
+    );
 
     res.send({
       data: await response.json(),
