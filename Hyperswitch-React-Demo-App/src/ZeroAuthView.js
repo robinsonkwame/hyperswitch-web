@@ -84,7 +84,7 @@ const ZeroAuthView = ({
                 })
                 .then((res) => {
                   setProcessing((_) => false);
-                  window.location.href = `${window.location.origin}/completion?status=${res.status}&paymentFlow=ZeroAuth&customer_id=${customer_id}`;
+                  window.location.href = `${window.location.origin}/completion?status=${res.data.status}&paymentFlow=ZeroAuth&customer_id=${customer_id}`;
                 });
             }}
           >
