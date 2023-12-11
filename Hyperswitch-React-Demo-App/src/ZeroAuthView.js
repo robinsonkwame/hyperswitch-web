@@ -33,8 +33,7 @@ const ZeroAuthView = ({
     }
   }, [isProcessing]);
   return (
-    <div>
-      {" "}
+    <React.Fragment>
       {cardData.length != 0 && !showSdk ? (
         <>
           <div
@@ -101,8 +100,8 @@ const ZeroAuthView = ({
       >
         Add Payment Method
       </button>
-      <div style={{ display: showSdk ? " " : "none" }}>{children}</div>
-    </div>
+      {children}
+    </React.Fragment>
   );
 };
 

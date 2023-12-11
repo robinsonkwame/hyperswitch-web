@@ -7,13 +7,13 @@ import "./css/bootstrap.css";
 function RecurringCart({ paymentFlow }) {
   return (
     <>
-      <div className="App-Container is-noBackground flex-container justify-content-center">
+      <div className="App-Container is-darkBackground flex-container justify-content-center">
         <div
-          className="App-Overview"
+          className="App-Overview is-darkBackgroun"
           style={{ backgroundColor: "rgb(255, 255, 255)" }}
         >
           <header
-            className="Header"
+            className="Header is-darkBackground"
             style={{ backgroundColor: "rgb(255, 255, 255)" }}
           >
             <div className="Header-content flex-container justify-content-space-between align-items-stretch">
@@ -100,7 +100,11 @@ function RecurringCart({ paymentFlow }) {
                     </svg>
                     <div
                       className="Header-detailsLabel"
-                      style={{ position: "unset", opacity: 1, transform: "none" }}
+                      style={{
+                        position: "unset",
+                        opacity: 1,
+                        transform: "none",
+                      }}
                     >
                       <span className="Text Text-color--default Text-fontSize--13 Text-fontWeight--400 Text--truncate">
                         Details
@@ -132,7 +136,7 @@ function RecurringCart({ paymentFlow }) {
                   />
                 </div>
               </div>
-              <div className="ProductSummary-info">
+              <div className="ProductSummary-info is-darkBackground">
                 <span
                   className="ProductSummary-name Text Text-color--gray500 Text-fontSize--16 Text-fontWeight--500"
                   data-testid="product-summary-name"
@@ -159,7 +163,12 @@ function RecurringCart({ paymentFlow }) {
                           </div>
                           <div className="flex-item width-fixed">
                             <span className="ProductSummaryTotalAmount-billingInterval Text Text-color--gray500 Text-fontSize--14">
-                              <div style={{ display: paymentFlow == "ZeroAuth" ? "none" : " " }}>
+                              <div
+                                style={{
+                                  display:
+                                    paymentFlow == "ZeroAuth" ? "none" : " ",
+                                }}
+                              >
                                 per <br className="BillingIntervalBreak" />
                                 month
                               </div>
@@ -178,7 +187,40 @@ function RecurringCart({ paymentFlow }) {
                 <div
                   className="ProductSummary-buttonsContainer"
                   data-testid="product-summary-buttons"
-                ></div>
+                >
+                  <div
+                    className="AdjustableQuantitySelector-hitBox is-mobile"
+                    data-testid="line-item-adjustable-qty-hit-box"
+                  >
+                    <button
+                      className="Button ProductSummary-actionButton Button--primary Button--md"
+                      type="button"
+                      data-testid="line-item-adjustable-qty"
+                    >
+                      <div className="flex-container justify-content-center align-items-center">
+                        <span className="Text Text-color--default Text-fontWeight--500 Text--truncate">
+                          <div className="flex-container justify-content-center align-items-center">
+                            <span className="Text Text-color--gray900 Text-fontSize--14 Text-fontWeight--500">
+                              Qty 1
+                            </span>
+                            <svg
+                              className="InlineSVG Icon AdjustableQuantitySelector-icon Icon--sm Icon--gray400"
+                              focusable="false"
+                              fill="gray400"
+                              color="gray400"
+                              viewBox="0 0 12 12"
+                            >
+                              <path
+                                d="M10.193 3.97a.75.75 0 0 1 1.062 1.062L6.53 9.756a.75.75 0 0 1-1.06 0L.745 5.032A.75.75 0 0 1 1.807 3.97L6 8.163l4.193-4.193z"
+                                fillRule="evenodd"
+                              ></path>
+                            </svg>
+                          </div>
+                        </span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
             <section
@@ -188,7 +230,12 @@ function RecurringCart({ paymentFlow }) {
               <ul className="OrderDetails-items">
                 <li
                   className="OrderDetails-item"
-                  style={{ opacity: 1, transform: "scale(1)", height: "auto", marginBottom: "16px" }}
+                  style={{
+                    opacity: 1,
+                    transform: "scale(1)",
+                    height: "auto",
+                    marginBottom: "16px",
+                  }}
                 >
                   <div className="LineItem flex-container align-items-flex-start">
                     <div
@@ -202,12 +249,8 @@ function RecurringCart({ paymentFlow }) {
                       />
                     </div>
                     <div className="flex-container justify-content-space-between align-items-baseline wrap-wrap width-grow">
-                      <div
-                        className="flex-column-break"
-                      ></div>
-                      <div
-                        className="flex-column-break"
-                      ></div>
+                      <div className="flex-column-break"></div>
+                      <div className="flex-column-break"></div>
                       <div
                         className="LineItem-productName flex-item width-auto"
                         data-testid="line-item-product-name"
@@ -228,9 +271,7 @@ function RecurringCart({ paymentFlow }) {
                         className="flex-container wrap-wrap"
                         style={{ width: "100%", order: 3 }}
                       >
-                        <div
-                          className="LineItem-productDescription flex-item width-12"
-                        >
+                        <div className="LineItem-productDescription flex-item width-12">
                           <div className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
                             <div className="ExpandableText false">
                               <div
@@ -238,15 +279,20 @@ function RecurringCart({ paymentFlow }) {
                                 className="ExpandableText--truncated"
                                 style={{ WebkitLineClamp: 2 }}
                               >
-                                {paymentFlow == "ZeroAuth" ? "June'21 Usage 512GB" : "Togethere's premium plan to work better togethere"}
+                                {paymentFlow == "ZeroAuth"
+                                  ? "June'21 Usage 512GB"
+                                  : "Togethere's premium plan to work better togethere"}
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div
-                          className="LineItem-description flex-item width-grow"
-                        >
-                          <span style={{ display: paymentFlow == "ZeroAuth" ? "none" : " " }} className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">
+                        <div className="LineItem-description flex-item width-grow">
+                          <span
+                            style={{
+                              display: paymentFlow == "ZeroAuth" ? "none" : " ",
+                            }}
+                            className="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400"
+                          >
                             <div
                               className="AdjustableQuantitySelector-hitBox"
                               data-testid="line-item-adjustable-qty-hit-box"
@@ -289,9 +335,7 @@ function RecurringCart({ paymentFlow }) {
                           data-testid="line-item-amount-detail"
                         ></div>
                       </div>
-                      <div
-                        className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left"
-                      >
+                      <div className="LineItem-tierBreakdown flex-item width-auto flex-item-align-left">
                         <div
                           className="flex-container"
                           data-testid="line-item-tiers"

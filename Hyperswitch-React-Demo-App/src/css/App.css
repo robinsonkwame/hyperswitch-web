@@ -217,7 +217,7 @@ iframe {
 }
 
 .paymentElement {
-  min-height: 480px;
+  min-height: 380px;
   opacity: 0;
   animation: 0s fadeInAnimation 1s ease-in-out forwards;
 }

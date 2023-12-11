@@ -14,13 +14,21 @@ const SdkPreview = ({
   elements,
   message,
   payButtonText,
+  showSdk,
 }) => {
   return (
     <>
-      <div className="paymentElement">
+      <div
+        className="paymentElement"
+        style={{ display: showSdk ? " " : "none" }}
+      >
         <PaymentElement id="payment-element" options={options} />
       </div>
-      <button disabled={isProcessing || !hyper || !elements} id="submit">
+      <button
+        disabled={isProcessing || !hyper || !elements}
+        id="submit"
+        style={{ display: showSdk ? " " : "none" }}
+      >
         <span id="button-text">
           {isProcessing ? "Processing ... " : payButtonText}
         </span>
@@ -99,7 +107,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
   }, [hyper]);
 
   const options = {
-    showCardFormByDefault: false,
+    showCardFormByDefault: true,
     disableSaveCards: paymentFlow == "ZeroAuth",
     wallets: {
       walletReturnUrl: `${window.location.origin}/completion?paymentFlow=${paymentFlow}&customer_id=${customer_id}`,
@@ -136,6 +144,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
                   hyper={hyper}
                   elements={elements}
                   message={message}
+                  showSdk={showSdk}
                   payButtonText="Subscribe Now"
                 />
               </ZeroAuthView>
@@ -146,6 +155,7 @@ export default function CheckoutForm({ paymentFlow, customer_id }) {
                 hyper={hyper}
                 elements={elements}
                 message={message}
+                showSdk={true}
                 payButtonText={
                   paymentFlow == "OneTimePayment" ? "Pay Now" : "Subscribe Now"
                 }
