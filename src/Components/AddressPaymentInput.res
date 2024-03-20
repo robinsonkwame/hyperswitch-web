@@ -309,7 +309,7 @@ let make = (~paymentType, ~className="") => {
               onChange=onPostalChange
               paymentType
               className
-              type_="tel"
+              type_="text"
               name="postal"
               inputRef=postalRef
               placeholder=localeString.postalCodeLabel
