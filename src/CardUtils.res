@@ -361,6 +361,7 @@ let getCardBrandIcon = (cardType, paymentType) => {
     | PayPalElement
     | ApplePayElement
     | PaymentRequestButtonsElement
+    | PaymentManagement
     | NONE =>
       <Icon size=brandIconSize name="default-card" />
     }

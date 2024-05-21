@@ -248,7 +248,8 @@ let make = (
       | "payPal"
       | "applePay"
       | "paymentRequestButtons"
-      | "payment" => ()
+      | "payment"
+      | "paymentManagement" => ()
       | str => manageErrorWarning(UNKNOWN_KEY, ~dynamicStr=`${str} type in create`, ~logger, ())
       }
 

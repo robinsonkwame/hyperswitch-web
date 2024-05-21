@@ -15,6 +15,7 @@ type mode =
   | PayPalElement
   | ApplePayElement
   | PaymentRequestButtonsElement
+  | PaymentManagement
   | NONE
 type label = Above | Floating | Never
 type themeClass = {
@@ -99,6 +100,7 @@ let getPaymentMode = val => {
   | "payPal" => PayPalElement
   | "applePay" => ApplePayElement
   | "paymentRequestButtons" => PaymentRequestButtonsElement
+  | "paymentManagement" => PaymentManagement
   | _ => NONE
   }
 }
@@ -114,6 +116,7 @@ let getPaymentModeToStrMapper = val => {
   | PayPalElement => "PayPalElement"
   | ApplePayElement => "ApplePayElement"
   | PaymentRequestButtonsElement => "PaymentRequestButtonsElement"
+  | PaymentManagement => "PaymentManagement"
   | NONE => "None"
   }
 }
