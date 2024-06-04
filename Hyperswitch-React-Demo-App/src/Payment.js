@@ -17,6 +17,7 @@ function Payment() {
         return Promise.all(responses.map((response) => response.json()));
       })
       .then((dataArray) => {
+        console.log(dataArray)
         const { publishableKey } = dataArray[0];
         const { serverUrl, clientUrl } = dataArray[1];
         const { clientSecret } = dataArray[2];
@@ -50,6 +51,7 @@ function Payment() {
     <div className="mainConatiner">
       <div className="heading">
         <h2>Hyperswitch Unified Checkout</h2>
+        <h3>{endPoint}</h3>
       </div>
       {clientSecret && hyperPromise && (
         <HyperElements

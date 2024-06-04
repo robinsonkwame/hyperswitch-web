@@ -1,5 +1,6 @@
 import "./App.css";
 import Payment from "./Payment";
+import SignUp from "./Signup"; // Corrected the file name casing to match the actual file
 import Completion from "./Completion";
 import React from "react";
 
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Payment />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </main>
