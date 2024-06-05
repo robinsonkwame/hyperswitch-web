@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { HyperElements, useHyper } from "@juspay-tech/react-hyper-js";
+import CheckoutForm from "./CheckoutForm";
 
 function SignUp() {
     const [hyperPromise, setHyperPromise] = useState(null);
@@ -58,7 +59,7 @@ function SignUp() {
             return;
         }
 
-        const customerResponse = await fetch('/cr`eate-customer', {
+        const customerResponse = await fetch('/create-customer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ setupIntentId: setupIntent.id }),

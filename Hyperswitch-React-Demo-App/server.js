@@ -3,6 +3,9 @@ const express = require("express");
 const app = express();
 const { resolve } = require("path");
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Replace if using a different env file or config
 const env = require("dotenv").config({ path: "./.env" });
 app.use(express.static("./dist"));
@@ -139,6 +142,66 @@ app.get("/create-payment-intent", async (req, res) => {
       error: {
         message: err.message,
       },
+    });
+  }
+});
+
+// Default data if none provided
+const defaultCustomer = {
+  email: "malik.detroit@example.com",
+  name: "Malik Detroit",
+};
+
+const defaultPaymentMethod = {
+  type: "card",
+  card: {
+    number: "4242424242424242",
+    exp_month: 12,
+    exp_year: 2030,
+    cvc: "123",
+  },
+};
+
+app.post("/store-customer-data", async (req, res) => {
+  try {
+    // Provide default empty objects if req.body is undefined or properties are missing
+    const { customer = {}, paymentMethod = {} } = req.body || {};
+
+    // Use provided data or default
+    const customerData = Object.keys(customer).length ? customer : defaultCustomer;
+    const paymentMethodData = Object.keys(paymentMethod).length ? paymentMethod : defaultPaymentMethod;
+
+    // Create customer
+    const createdCustomer = await hyper.customers.create(customerData);
+
+    let createdPaymentMethod;
+    try {
+      // Create payment method with additional fields from paymentMethodData
+      createdPaymentMethod = await hyper.paymentMethods.create({
+        ...paymentMethodData,
+        payment_method: paymentMethodData.payment_method || "card",
+        customer_id: createdCustomer.customer_id
+      });
+    } catch (error) {
+      return res.status(500).json({
+        error: {
+          message: "Failed to create payment method",
+          details: error.message,
+          stack: error.stack
+        }
+      });
+    }
+
+    res.status(200).json({
+      message: "Customer and payment method stored successfully",
+      customer: createdCustomer,
+      paymentMethod: createdPaymentMethod,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+      req: req.body
     });
   }
 });
