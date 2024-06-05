@@ -206,6 +206,33 @@ app.post("/store-customer-data", async (req, res) => {
   }
 });
 
+// SIGNUP BACKEND API
+//
+// SETS UP THE PAYMENT INTENT FOR MIT charges later
+//
+// // Endpoint to create a zero amount payment intent for future use
+// app.post("/create-zero-amount-payment-intent", async (req, res) => {
+//     try {
+//         const { customer_id, email, name, phone } = req.body;
+//         const paymentIntent = await hyper.paymentIntents.create({
+//             amount: 0,
+//             currency: "USD",
+//             customer_id: customer_id,
+//             email: email,
+//             name: name,
+//             phone: phone,
+//             setup_future_usage: "off_session",  // Important for MIT
+//             confirm: false,  // No need to confirm immediately
+//             description: "Zero amount authorization for future charges",
+//             payment_method_types: ["card"],  // Assuming card payments
+//         });
+//         res.json({ clientSecret: paymentIntent.client_secret, paymentIntentId: paymentIntent.id });
+//     } catch (error) {
+//         res.status(500).json({ error: error.message });
+//     }
+// });
+
+
 app.listen(5252, () =>
   console.log(`Node server listening at http://localhost:5252`)
 );
